@@ -25,7 +25,7 @@ export default function Hero({
   alternativePlatforms,
 }: Props) {
   return (
-    <div className="font-inter text-burnt mb-20 lg:mb-40">
+    <div className="font-inter text-burnt mb-20 lg:my-20">
       <h1 className="font-baloo font-semibold text-4xl md:text-6xl mb-1 text-burnt">
         {title}
       </h1>
