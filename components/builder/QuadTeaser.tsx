@@ -47,6 +47,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
           </svg>
             {teasers.length > 0 && teasers.map((teaser: any, i:number) => 
           <motion.div
+            key={i}
             className="absolute text-white top-0 left-0 bg-burnt px-4 py-1 rounded-full flex gap-2 pr-6"
             style={{
                 offsetPath: 'path("M709 5.5L5.5 170L143 764.5L848.5 600.5L709 5.5Z")',

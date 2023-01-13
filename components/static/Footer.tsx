@@ -1,7 +1,7 @@
 import Logo from "./Logo"
 import Link from "next/link"
 
-export default function () {
+export default function Footer() {
     return <footer className="mt-40 pl-20 md:px-20 xl:pr-60 flex w-full py-20 bg-burnt text-white justify-between items-center">
         <div className="">
             <Logo pathToHome={"/"} inverted={true}/>

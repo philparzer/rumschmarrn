@@ -3,7 +3,7 @@ import Logo from "./Logo"
 
 interface Props {}
 
-export default function () {
+export default function Nav() {
   return (
     <nav className="h-14 pr-20 md:px-20 xl:pr-60 flex items-center justify-between text-inter fixed top-0 w-full mb-20 bg-white z-40">
       <Logo pathToHome={"/"}/>

@@ -13,7 +13,7 @@ interface Props {
     buttonLink: any;
 }
 
-export default function({title, wordType, seperation, definition, example, buttonText, buttonLink, alternativeText, alternativePlatforms }: Props) {
+export default function Hero({title, wordType, seperation, definition, example, buttonText, buttonLink, alternativeText, alternativePlatforms }: Props) {
 
     return <div className="font-inter text-burnt mb-40">
         <h1 className="font-baloo font-semibold text-6xl mb-1">{title}</h1>
