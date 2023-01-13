@@ -3,18 +3,16 @@ interface Props {
   teasers: any[];
 }
 
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 
 
 export default function QuadTeaser({ title, teasers }: Props) {
-    console.log(teasers)
-    const controls = useAnimationControls()
   return (
-    <section className="w-full flex flex-col items-center justify-center my-40">
-      <h2 className="font-inter font-semibold text-4xl relative z-10 text-burnt">
+    <section className="w-full flex flex-col items-center justify-center my-20 mb-60 md:mb-0 md:my-40">
+      <h2 className="font-inter font-semibold text-4xl relative z-10 text-red">
         {title}
       </h2>
-      <div className="relative flex h-[50vh] w-full items-center justify-center">
+      <div className="relative flex h-[50vh] w-full items-center justify-center translate-x-[88%]">
         <svg
           className="absolute w-[854px] h-[770px] -translate-x-6 -translate-y-4"
           viewBox="0 0 854 770"

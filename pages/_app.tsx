@@ -13,7 +13,7 @@ if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
 
 function App(props: any) {
   return (
-    <div className="selection:bg-rum selection:text-white font-inter">
+    <div className="selection:bg-rum selection:text-white font-inter overflow-x-hidden">
         <props.Component {...props.pageProps}/>
     </div>
   );
