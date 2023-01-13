@@ -25,8 +25,8 @@ export default function Hero({
   alternativePlatforms,
 }: Props) {
   return (
-    <div className="font-inter text-burnt mb-20 lg:my-20">
-      <h1 className="font-baloo font-semibold text-4xl md:text-6xl mb-1 text-burnt">
+    <div className="font-inter mb-20 lg:my-20">
+      <h1 className="font-baloo font-semibold text-4xl md:text-6xl mb-1">
         {title}
       </h1>
       <div className="">
@@ -51,7 +51,7 @@ export default function Hero({
       <div className="flex gap-6 items-center">
         <Link
           href={buttonLink.value !== undefined ? buttonLink.value.data.url : ""}
-          className="px-4 py-1 bg-burnt text-white rounded-full"
+          className="px-4 py-1 bg-burnt  text-white rounded-full"
         >
           {buttonText}
         </Link>
