@@ -20,7 +20,7 @@ function App(props: any) {
 }
 export default App;
 
-//register custom components here
+//register custom components here TODO: look into if this is better for performance if less imports -> only relevant imports on home
 Builder.registerComponent(
   dynamic((): any => import("../components/builder/Hero")),
   {
@@ -78,5 +78,88 @@ Builder.registerComponent(
         ],
       },
     ],
+  }
+);
+
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/Player")),
+  {
+    name: "Player",
+    inputs: [
+      { name: "audioSrc", type: "file", defaultValue: "Heading" },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/FourSteps")),
+  {
+    name: "Four Steps",
+    inputs: [
+      { name: "1st Step", type: "text", defaultValue: "Lorem Ipsum" },
+      { name: "2nd Step", type: "text", defaultValue: "Lorem Ipsum" },
+      { name: "3rd Step", type: "text", defaultValue: "Lorem Ipsum" },
+      { name: "4th Step", type: "text", defaultValue: "Lorem Ipsum" },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/FourSteps")),
+  {
+    name: "Four Steps",
+    inputs: [
+      { name: "firstStep", type: "text", defaultValue: "Lorem Ipsum" },
+      { name: "secondStep", type: "text", defaultValue: "Lorem Ipsum" },
+      { name: "thirdStep", type: "text", defaultValue: "Lorem Ipsum" },
+      { name: "fourthStep", type: "text", defaultValue: "Lorem Ipsum" },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/MainHeadline")),
+  {
+    name: "Main Headline",
+    description: "only use on subpages, and only once",
+    inputs: [
+      { name: "title", type: "text", defaultValue: "Heading" },
+    ]
+  }
+);
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/CenterCallout")),
+  {
+    name: "Center Callout",
+    inputs: [
+      { name: "title", type: "string", defaultValue: "Heading" },
+      {
+        name: "callouts",
+        type: "list",
+        defaultValue: [{content: "Lorem Ipsum"}],
+        subFields: [
+          {
+            name: "content",
+            type: "string",
+          },
+        ],
+      },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/AssetCard")),
+  {
+    name: "Horizontal Text and Asset",
+    inputs: [
+      { name: "title", type: "text", defaultValue: "Heading" },
+      { name: "text", type: "richText", defaultValue: "Lorem Ipsum dolor sit amet" },
+      { name: "altText", type: "text"},
+      { name: "file", type: "file"},
+      { name: "fileType", type: "text", enum: ['image', 'video'], defaultValue: "image"}
+    ]
   }
 );

@@ -1,6 +1,6 @@
 /*
 WHAT:
-
+audio control ui for use in player
 */
 import {useState, useEffect} from "react"
 

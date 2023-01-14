@@ -7,8 +7,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        baloo: ["Baloo", "cursive"],
+        inter: ["Inter", "sans-serif"], //TODO: get smaller font files
+        baloo: ["Baloo", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       colors: {
         "burnt": "#312F2A",

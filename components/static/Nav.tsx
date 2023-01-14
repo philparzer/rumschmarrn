@@ -23,13 +23,13 @@ export default function Nav() {
       <nav className="h-14 px-5 md:px-20 xl:pr-60 flex items-center justify-between text-inter fixed top-0 w-full mb-20 bg-white z-40 text-burnt">
         <Logo pathToHome={"/"} />
         <div className="hidden md:flex gap-14">
-          <Link className="transition-all hover:tracking-wide" href="/test">
+          <Link className="transition-all hover:tracking-wide" href="/episoden">
             Episoden
           </Link>
-          <Link className="transition-all hover:tracking-wide" href="/test">
+          <Link className="transition-all hover:tracking-wide" href="/konzept">
             Konzept
           </Link>
-          <Link className="transition-all hover:tracking-wide" href="/test">
+          <Link className="transition-all hover:tracking-wide" href="/ueber-uns">
             Über Uns
           </Link>
         </div>
@@ -59,13 +59,13 @@ export default function Nav() {
 
             
             <div className="flex flex-col items-center px-5 justify-center font-semibold gap-[5vh] mb-[20vh]">
-            <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/test">
+            <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/episoden">
               Episoden
             </Link>
-            <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/test">
+            <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/konzept">
               Konzept
             </Link>
-            <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/test">
+            <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/ueber-uns">
               Über Uns
             </Link>
             </div>

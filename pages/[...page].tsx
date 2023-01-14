@@ -99,13 +99,3 @@ export default function Page({ page }: any) {
     </>
   );
 }
-
-Builder.registerComponent(
-  dynamic((): any => import("../components/builder/Player")),
-  {
-    name: "Player",
-    inputs: [
-      { name: "audioSrc", type: "file", defaultValue: "Heading" },
-    ],
-  }
-);

@@ -1,3 +1,8 @@
+/*
+WHAT:
+Hero for Home
+*/
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -41,7 +46,7 @@ export default function Hero({
       <div className="flex mb-14">
         <div className="px-5 py-9 bg-schmarrn-light rounded-[10px]">
           <div
-            className="font-robotoFlex text-black richtext"
+            className="text-black richtext"
             dangerouslySetInnerHTML={{
               __html: example,
             }}

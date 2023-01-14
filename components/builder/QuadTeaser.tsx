@@ -1,3 +1,8 @@
+/*
+WHAT:
+animated showcase square component
+*/
+
 interface Props {
   title: string;
   teasers: any[];

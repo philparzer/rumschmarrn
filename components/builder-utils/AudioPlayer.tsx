@@ -1,3 +1,8 @@
+/*
+WHAT:
+audio player to be rendered inside Player component
+*/
+
 import { useState, useEffect, useRef } from "react";
 import AudioControls from "./AudioControls";
 
