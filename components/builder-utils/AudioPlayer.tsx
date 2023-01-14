@@ -16,44 +16,44 @@ const AudioPlayer = ({ audioSrc }: Props) => {
   const [currentVolume, setCurrentVolume] = useState(1)
 
   let audioMeta = {};
+  const audioRef:any = useRef(typeof Audio != "undefined" && new Audio(audioSrc));
+  const intervalRef: any = useRef();
 
   if (typeof Audio != "undefined") { //needed for ssr/ssg
-    const audioRef = useRef(new Audio(audioSrc));
-    const intervalRef: any = useRef();
     let { duration, volume } = audioRef.current;
     audioMeta = {duration, trackProgress, volume}
-
-    const startTimer = () => {
-      // Clear any timers already running
-      clearInterval(intervalRef.current);
-
-      intervalRef.current = setInterval(() => {
-        setTrackProgress(audioRef.current.currentTime);
-      }, 200);
-    };
-
-    useEffect(() => {
-      if (isPlaying) {
-        audioRef.current.play();
-        startTimer();
-      } else {
-        clearInterval(intervalRef.current);
-        audioRef.current.pause();
-      }
-    }, [isPlaying]);
-
-    useEffect(() => {
-      // Pause and clean up on unmount
-      return () => {
-        audioRef.current.pause();
-        clearInterval(intervalRef.current);
-      };
-    }, []);
-
-    useEffect(() => {
-        audioRef.current.volume = currentVolume
-      }, [currentVolume]);
   }
+  
+  const startTimer = () => {
+    // Clear any timers already running
+    clearInterval(intervalRef.current);
+
+    intervalRef.current = setInterval(() => {
+      setTrackProgress(audioRef.current.currentTime);
+    }, 200);
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play();
+      startTimer();
+    } else {
+      clearInterval(intervalRef.current);
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    // Pause and clean up on unmount
+    return () => {
+      audioRef.current.pause();
+      clearInterval(intervalRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+      audioRef.current.volume = currentVolume
+    }, [currentVolume]);
 
   return (
     <>
