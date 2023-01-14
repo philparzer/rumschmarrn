@@ -56,7 +56,7 @@ export default function Hero({
       <div className="flex gap-6 items-center">
         <Link
           href={buttonLink.value !== undefined ? buttonLink.value.data.url : ""}
-          className="px-4 py-1 bg-burnt  text-white rounded-full"
+          className="px-4 py-1 bg-burnt hover:bg-rum transition-all  text-white rounded-full"
         >
           {buttonText}
         </Link>

@@ -43,10 +43,10 @@ export default function Nav() {
       {navDrawerVisible && (
         
         <motion.div 
-        initial={{top: "-100%"}}
-        animate={{top: "0%"}}
-        exit={{top: "-100%"}}
-        transition={{duration: .4}}
+        initial={{opacity: 0}}
+        animate={{opacity: 100}}
+        exit={{opacity: 0}}
+        transition={{duration: .2}}
         className="fixed top-0 right-0 w-full bg-opacity-20 backdrop-blur-md h-[100vh] bg-white z-[50] flex flex-col">
           <div className="h-full flex flex-col">
             <div className="w-full flex flex-row justify-between px-5 md:px-20 h-14 items-center">
@@ -58,7 +58,7 @@ export default function Nav() {
             <div className="grow flex flex-col justify-center">
 
             
-            <div className="flex flex-col items-center px-5 justify-center font-semibold gap-[5vh] mb-[20vh]">
+            <div className="flex flex-col items-center px-5 justify-center font-semibold gap-[5vh] mb-[20vh] text-xl">
             <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/episoden">
               Episoden
             </Link>
@@ -68,6 +68,7 @@ export default function Nav() {
             <Link className="transition-all hover:tracking-wide bg-burnt text-white px-4 py-2 rounded-full" href="/ueber-uns">
               Über Uns
             </Link>
+            
             </div>
             </div>
         </div>
