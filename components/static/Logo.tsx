@@ -6,6 +6,7 @@ interface Props {
 }
 
 export default function Logo({pathToHome, inverted=false}: Props) {
+    //TODO: easteregg minecraft font anim
     return <div>
     <Link href={pathToHome} className="flex items-center gap-2 group" title="Home">
     <svg className="w-12 h-12" viewBox="0 0 53 40" fill="none" xmlns="http://www.w3.org/2000/svg">

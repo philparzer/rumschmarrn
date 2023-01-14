@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { BuilderComponent, builder } from '@builder.io/react';
 
 import Nav from "../components/static/Nav"

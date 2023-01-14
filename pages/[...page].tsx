@@ -3,6 +3,10 @@ import DefaultErrorPage from 'next/error';
 import Head from 'next/head';
 import React from 'react';
 import { BuilderComponent, builder, useIsPreviewing, Builder } from '@builder.io/react';
+import dynamic from 'next/dynamic';
+import Footer from '../components/static/Footer'
+import Nav from '../components/static/Nav';
+import Layout from "../components/static/Layout"
 
 /*
   Initialize the Builder SDK with your organization's API Key
@@ -85,18 +89,23 @@ export default function Page({ page }: any) {
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <div style={{ padding: 50, textAlign: 'center' }}>
-        {/* Put your header or main layout here */}
-        Your header
-      </div>
-
+      <Nav />
+      <div className="mb-40"></div>
       {/* Render the Builder page */}
+      <Layout>
       <BuilderComponent model="page" content={page} />
-
-      <div style={{ padding: 50, textAlign: 'center' }}>
-        {/* Put your footer or main layout here */}
-        Your footer
-      </div>
+      </Layout>
+      <Footer />
     </>
   );
 }
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/Player")),
+  {
+    name: "Player",
+    inputs: [
+      { name: "audioSrc", type: "file", defaultValue: "Heading" },
+    ],
+  }
+);

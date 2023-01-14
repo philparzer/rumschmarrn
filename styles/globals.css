@@ -13,22 +13,4 @@
     src: url("../public/fonts/Baloo2-VariableFont_wght.ttf");
     font-display: swap;
   }
-
-  .container {
-    position: relative;
-    background: red;
-  }
-  
-  .box {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    position: absolute;
-    background: #312F2A;
-    top: 0;
-    left: 0;
-    offset-path: path(
-        "M709 5.5L5.5 170L143 764.5L848.5 600.5L709 5.5Z"
-    );
-  }
   
