@@ -163,3 +163,10 @@ Builder.registerComponent(
     ]
   }
 );
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/static/EpisodeList")),
+  {
+    name: "Episode List",
+  }
+);

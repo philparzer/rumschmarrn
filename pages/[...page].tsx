@@ -28,6 +28,8 @@ export async function getStaticProps({ params }: any) {
     See more info here: https://nextjs.org/docs/messages/large-page-data*/
     
   
+  const episodes:any = await builder.getAll("episodes", {});
+
   const page:any = await builder
     .get("page", {
       userAttributes: {
@@ -39,6 +41,7 @@ export async function getStaticProps({ params }: any) {
   return {
     props: {
       page: page || null,
+      episodes: episodes || null,
     },
     revalidate: 5,
   };
