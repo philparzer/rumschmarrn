@@ -18,9 +18,6 @@ export default function Player({ audioSrc, episode }: Props) {
   return (
         <>
           <EpisodeTitle
-            index={episode.value.data.indexNumber}
-            title={episode.value.data.title}
-            date={episode.value.data.date}
             episode={episode}
           />
           <AudioPlayer audioSrc={audioSrc}/>

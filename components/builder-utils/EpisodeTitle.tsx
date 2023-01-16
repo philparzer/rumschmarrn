@@ -26,6 +26,7 @@ export default function EpisodeTitle({ episode }: Props) {
               : episode.value.data.locationLink
           }
           target={episode.value.data.hasAnchor === false ? "_blank" : ""}
+          rel="noopener noreferrer"
         >
           <span>
             {episode.value.data.location}, {episode.value.data.city}
