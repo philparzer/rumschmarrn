@@ -26,9 +26,6 @@ export async function getStaticProps({ params }: any) {
 
   /*FIXME: /spi Warning: data for page "/[...page]" (path "/spi") is 133 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
     See more info here: https://nextjs.org/docs/messages/large-page-data*/
-    
-  
-  const episodes:any = await builder.getAll("episodes", {});
 
   const page:any = await builder
     .get("page", {
@@ -41,7 +38,6 @@ export async function getStaticProps({ params }: any) {
   return {
     props: {
       page: page || null,
-      episodes: episodes || null,
     },
     revalidate: 5,
   };
@@ -96,7 +92,7 @@ export default function Page({ page }: any) {
       <div className="mb-40"></div>
       {/* Render the Builder page */}
       <Layout>
-      <BuilderComponent model="page" content={page} />
+      <BuilderComponent model="page" content={page} options={{includeRefs: true}}/>
       </Layout>
       <Footer />
     </>

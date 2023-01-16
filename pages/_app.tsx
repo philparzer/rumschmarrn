@@ -1,20 +1,16 @@
 import { AppProps } from "next/app";
 import "../styles/globals.css";
-import {
-  builder,
-  Builder,
-} from "@builder.io/react";
+import { builder, Builder } from "@builder.io/react";
 import dynamic from "next/dynamic";
 
 if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
   builder.init(process.env.NEXT_PUBLIC_BUILDERIO_KEY);
 }
 
-
 function App(props: any) {
   return (
     <div className="selection:bg-rum selection:text-white font-inter overflow-x-hidden text-burnt">
-        <props.Component {...props.pageProps}/>
+      <props.Component {...props.pageProps} />
     </div>
   );
 }
@@ -30,10 +26,10 @@ Builder.registerComponent(
       { name: "wordType", type: "string", defaultValue: "Heading" },
       { name: "seperation", type: "string", defaultValue: "Heading" },
       { name: "definition", type: "string", defaultValue: "Heading" },
-      { name: "example", type: "richText" ,defaultValue: ""},
-      { name: "buttonText", type: "string", defaultValue: "Hier reinhören"},
-      { name: "buttonLink", type: "reference", model: "page"},
-      { name: "alternativeText", type: "string", defaultValue: "oder"},
+      { name: "example", type: "richText", defaultValue: "" },
+      { name: "buttonText", type: "string", defaultValue: "Hier reinhören" },
+      { name: "buttonLink", type: "reference", model: "page" },
+      { name: "alternativeText", type: "string", defaultValue: "oder" },
       {
         name: "alternativePlatforms",
         type: "list",
@@ -44,12 +40,12 @@ Builder.registerComponent(
           },
           {
             name: "logo",
-            type: "file"
+            type: "file",
           },
           {
             name: "link",
-            type: "string"
-          }
+            type: "string",
+          },
         ],
       },
     ],
@@ -73,14 +69,13 @@ Builder.registerComponent(
           {
             name: "link",
             type: "reference",
-            model: "page"
-          }
+            model: "page",
+          },
         ],
       },
     ],
   }
 );
-
 
 Builder.registerComponent(
   dynamic((): any => import("../components/builder/Player")),
@@ -88,6 +83,164 @@ Builder.registerComponent(
     name: "Player",
     inputs: [
       { name: "audioSrc", type: "file", defaultValue: "Heading" },
+      { name: "episode", type: "reference", model: "episodes" },
+
+      {
+        name: "annotators",
+        type: "list",
+        subFields: [
+          {
+            name: "annotatorName",
+            type: "string",
+          },
+          {
+            name: "annotatorPosition",
+            type: "string",
+          },
+          {
+            name: "annotatorType",
+            type: "string",
+            enum: ["nuss", "apfel", "sahne", "blaubeer"],
+          },
+          {
+            name: "annotatorPic",
+            type: "file",
+          },
+        ],
+      },
+      {
+        name: "timestamps",
+        type: "list",
+        subFields: [
+          {
+            name: "time",
+            type: "string",
+          },
+          {
+            name: "annotations",
+            type: "list",
+            subFields: [
+              {
+                name: "episodeQuote",
+                type: "string",
+              },
+              {
+                name: "nussAnnotations",
+                type: "list",
+                subFields: [
+                  {
+                    name: "content",
+                    type: "longText"
+                  },
+                  {
+                    name: "reasoningType",
+                    type: "string",
+                    enum: ["anecdote", "quote"]
+                  },
+                  { 
+                    name: "reasoningSource",
+                    type: "string",
+                  },
+                  {
+                    name: "reasoningBody",
+                    type: "longText",
+                    description: "if anecdote -> describe anecdote, else source body"
+                  },
+                  {
+                    name: "reasoningLink",
+                    type: "string"
+                  }
+                ]
+              },
+              {
+                name: "apfelAnnotations",
+                type: "list",
+                subFields: [
+                  {
+                    name: "content",
+                    type: "longText"
+                  },
+                  {
+                    name: "reasoningType",
+                    type: "string",
+                    enum: ["anecdote", "quote"]
+                  },
+                  { 
+                    name: "reasoningSource",
+                    type: "string",
+                  },
+                  {
+                    name: "reasoningBody",
+                    type: "longText",
+                    description: "if anecdote -> describe anecdote, else source body"
+                  },
+                  {
+                    name: "reasoningLink",
+                    type: "string"
+                  }
+                ]
+              },
+              {
+                name: "sahneAnnotations",
+                type: "list",
+                subFields: [
+                  {
+                    name: "content",
+                    type: "longText"
+                  },
+                  {
+                    name: "reasoningType",
+                    type: "string",
+                    enum: ["anecdote", "quote"]
+                  },
+                  { 
+                    name: "reasoningSource",
+                    type: "string",
+                  },
+                  {
+                    name: "reasoningBody",
+                    type: "longText",
+                    description: "if anecdote -> describe anecdote, else source body"
+                  },
+                  {
+                    name: "reasoningLink",
+                    type: "string"
+                  }
+                ]
+              },
+              {
+                name: "blaubeerAnnotations",
+                type: "list",
+                subFields: [
+                  {
+                    name: "content",
+                    type: "longText"
+                  },
+                  {
+                    name: "reasoningType",
+                    type: "string",
+                    enum: ["anecdote", "quote"]
+                  },
+                  { 
+                    name: "reasoningSource",
+                    type: "string",
+                  },
+                  {
+                    name: "reasoningBody",
+                    type: "longText",
+                    description: "if anecdote -> describe anecdote, else source body"
+                  },
+                  {
+                    name: "reasoningLink",
+                    type: "string"
+                  }
+                ]
+              },
+            ],
+            
+          },
+        ],
+      },
     ],
   }
 );
@@ -123,9 +276,7 @@ Builder.registerComponent(
   {
     name: "Main Headline",
     description: "only use on subpages, and only once",
-    inputs: [
-      { name: "title", type: "text", defaultValue: "Heading" },
-    ]
+    inputs: [{ name: "title", type: "text", defaultValue: "Heading" }],
   }
 );
 
@@ -138,7 +289,7 @@ Builder.registerComponent(
       {
         name: "callouts",
         type: "list",
-        defaultValue: [{content: "Lorem Ipsum"}],
+        defaultValue: [{ content: "Lorem Ipsum" }],
         subFields: [
           {
             name: "content",
@@ -156,17 +307,19 @@ Builder.registerComponent(
     name: "Horizontal Text and Asset",
     inputs: [
       { name: "title", type: "text", defaultValue: "Heading" },
-      { name: "text", type: "richText", defaultValue: "Lorem Ipsum dolor sit amet" },
-      { name: "altText", type: "text"},
-      { name: "file", type: "file"},
-      { name: "fileType", type: "text", enum: ['image', 'video'], defaultValue: "image"}
-    ]
-  }
-);
-
-Builder.registerComponent(
-  dynamic((): any => import("../components/static/EpisodeList")),
-  {
-    name: "Episode List",
+      {
+        name: "text",
+        type: "richText",
+        defaultValue: "Lorem Ipsum dolor sit amet",
+      },
+      { name: "altText", type: "text" },
+      { name: "file", type: "file" },
+      {
+        name: "fileType",
+        type: "text",
+        enum: ["image", "video"],
+        defaultValue: "image",
+      },
+    ],
   }
 );

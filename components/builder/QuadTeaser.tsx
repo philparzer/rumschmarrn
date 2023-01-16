@@ -51,7 +51,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
           </svg>
           {teasers.length > 0 &&
             teasers.map((teaser: any, i: number) => (
-              <Link key={i} href={teaser.link.value.data.url} className="group ">
+              <Link key={i} href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group ">
               <motion.div
                 
                 className=" absolute font-semibold items-center top-0 left-0 bg-burnt transition-colors text-white rounded-[10px] group-hover:bg-rum px-4 py-1 flex gap-2 pr-6 "

@@ -2,29 +2,29 @@ import Link from "next/link";
 import { EpisodeData } from "../../types/interfaces";
 
 interface Props {
-  episode: EpisodeData;
+  episode: any;
   bgOpacity: number;
 }
 
 export default function EpisodeListEntry({ episode, bgOpacity }: Props) {
-  
-  console.log(bgOpacity)
+  console.log("hi")
+  console.log(episode)
   
   return (
     <Link
       className="flex justify-between items-center group"
       href={episode.link}
     >
-    <div style={{background: `rgba(255, 239, 181, ${bgOpacity})`}} className={`flex items-center w-11/12 justify-between bg-schmarrn-light pl-10 pr-4 py-2 rounded-[10px] group-hover:!bg-schmarrn-dark transition-all`}>
+    <div style={{background: `rgba(255, 239, 181, ${bgOpacity})`}} className={`flex items-center w-full justify-between bg-schmarrn-light pl-6 lg:pl-10 pr-4 py-2 rounded-[10px] group-hover:!bg-schmarrn-dark transition-all`}>
       <div className="flex grow justify-between items-center">
         <div className="flex grow items-center">
           <h3 className="font-poppins text-xl mr-[7%]">{episode.i}</h3>
-          <h2 className="font-semibold">{episode.title}</h2>
+          <div className="w-full border"><h2 className="font-semibold">{episode.title}</h2><div className="xl:hidden inline-block text-sm w-[250px] sm:w-[300px] md:w-[350px] overflow-hidden  text-ellipsis whitespace-nowrap">{episode.location}, {episode.city} | {new Date(episode.date).toLocaleDateString("de")}</div></div>
         </div>
-        <div className="text-sm">{episode.location} | {new Date(episode.date).toLocaleDateString("de")}</div>
+        <div className="hidden xl:block text-sm">{episode.location}, {episode.city} | {new Date(episode.date).toLocaleDateString("de")}</div>
       </div>
 
-      <div className="w-4/12 flex justify-end">
+      <div className="w-2/12 flex justify-end">
       <svg
           className="w-[61px] h-[61px]"
           viewBox="0 0 28 28"

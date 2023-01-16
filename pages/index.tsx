@@ -18,7 +18,7 @@ export default function Home({home}: any) {
       <Nav />
       <div className="mb-[20vh]"></div>
       <Layout>
-        <BuilderComponent model="homepage" content={home} />
+        <BuilderComponent model="homepage" content={home} options={{includeRefs: true}}/>
       </Layout>
       <Footer />
     </>

@@ -25,7 +25,7 @@ if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
 export async function getStaticProps({ params }: any) {
   
   const episodes:any = await builder.getAll("episodes", {});
-  let formattedEpisodes = episodes.map((episode: any, i:number):EpisodeData => {return {link: episode.data.episode.value.data.url, title: episode.data.title, location: episode.data.location, date: episode.data.date, i: i+1}})
+  let formattedEpisodes = episodes.map((episode: any, i:number):EpisodeData => {return {link: episode.data.episode.value.data.url, title: episode.data.title, location: episode.data.location, city: episode.data.city, date: episode.data.date, i: i+1}}) // TODO: sort before
   let sortedEpisodes = formattedEpisodes.sort((a:EpisodeData, b:EpisodeData) => new Date(b.date).getTime() - new Date(a.date).getTime())
   return {
     props: {
@@ -56,12 +56,14 @@ export default function Page({ page, episodes }: any) {
       <Nav />
       <div className="mb-40"></div>
       <Layout>
-        <section className="flex gap-10 items-center mb-10 lg:mb-20">
+        <section className="flex gap-10 items-center mb-10 lg:mb-20 flex-wrap">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 lg:items-center ">
         <h1 className="text-[40px] font-poppins">Episoden</h1>
-        <input className="bg-burnt bg-opacity-[7%] rounded-[10px] px-4 placeholder:text-burnt py-2 focus:outline-rum" placeholder='Suchen' ref={inputRef} onChange={(e) => search(e.target.value)}></input>
+        <input className="bg-burnt bg-opacity-[7%] rounded-[10px] px-4 placeholder:text-burnt py-2 h-10 focus:outline-rum" placeholder='Suchen' ref={inputRef} onChange={(e) => search(e.target.value)}></input>
+        </div>
         {filteredEpisodes.length === 0 && 
-        <div className="flex justify-center flex-col gap-5">
-          <div className="flex items-center gap-2 px-4">
+        <div className="flex w-full justify-center flex-col gap-5">
+          <div className="flex items-center gap-2">
             <p className="">Keine Ergebnisse</p>
             <div>
             <svg
