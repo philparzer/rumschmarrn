@@ -7,25 +7,34 @@ import { AnyMxRecord } from "dns";
 import { Location } from "../../types/interfaces";
 
 interface Props {
-  index: any;
-  title: any;
-  date: any;
   episode: any;
-//   location: any;
 }
 
-export default function EpisodeTitle({ index, title, date, episode }: Props) {
-  console.log(episode)
-    return (
-    <div className="flex w-full justify-between">
-      <div>
-        <p>{JSON.stringify(index)}</p>
+export default function EpisodeTitle({ episode }: Props) {
+  console.log(episode);
+  return (
+    <div className="flex w-full justify-between flex-row mb-24">
+      <div className="flex items-center gap-10">
+        <p className="text-4xl font-poppins leading-none">{episode.value.data.indexNumber}</p>
         <div>
-          <h1>{JSON.stringify(title)}</h1>
-          <a href="#"></a>
+          <h1 className="font-poppins text-[26px] leading-none">{episode.value.data.title}</h1>
+          <a
+          className="text-[20px] font-inter underline"
+          href={
+            episode.value.data.hasAnchor
+              ? `#location`
+              : episode.value.data.locationLink
+          }
+          target={episode.value.data.hasAnchor === false ? "_blank" : ""}
+        >
+          <span>
+            {episode.value.data.location}, {episode.value.data.city}
+          </span>
+        </a>
         </div>
+        
       </div>
-      <div>{new Date(date).toLocaleDateString("de")}</div>
+      <div className="self-end text-sm">{new Date(episode.value.data.date).toLocaleDateString("de")}</div>
     </div>
   );
 }

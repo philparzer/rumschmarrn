@@ -16,10 +16,6 @@ interface Props {
 export default function Player({ audioSrc, episode }: Props) {
   console.log(episode);
   return (
-    <>
-      {episode.value === undefined ? (
-        <>{":( This doesnt work in Builder Visual Editor"}</>
-      ) : (
         <>
           <EpisodeTitle
             index={episode.value.data.indexNumber}
@@ -27,9 +23,7 @@ export default function Player({ audioSrc, episode }: Props) {
             date={episode.value.data.date}
             episode={episode}
           />
-          {/* <AudioPlayer audioSrc={audioSrc}/> */}
+          <AudioPlayer audioSrc={audioSrc}/>
         </>
-      )}
-    </>
   );
 }
