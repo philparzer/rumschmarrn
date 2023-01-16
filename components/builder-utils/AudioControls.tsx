@@ -48,8 +48,23 @@ export default function AudioControls({
   };
 
   return (
-    <div>
-      <div className="relative w-[80px]">
+    <div className="flex gap-0">
+      <div className="border w-14 flex flex-col justify-end">
+      <input
+        className="-rotate-90 w-full"
+        title="volume"
+        type="range"
+        value={volume}
+        step=".02"
+        min="0"
+        max={1}
+        onChange={(e) => setVolume(e.target.value)}
+        // onMouseUp={onScrubEnd}
+        // onKeyUp={onScrubEnd}
+      />
+      <div className="self-start"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 20q-.825 0-1.412-.587Q4 18.825 4 18v-4q0-.825.588-1.413Q5.175 12 6 12t1.412.587Q8 13.175 8 14v4q0 .825-.588 1.413Q6.825 20 6 20Zm6 0q-.825 0-1.412-.587Q10 18.825 10 18V6q0-.825.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6v12q0 .825-.587 1.413Q12.825 20 12 20Zm6 0q-.825 0-1.413-.587Q16 18.825 16 18v-7q0-.825.587-1.413Q17.175 9 18 9q.825 0 1.413.587Q20 10.175 20 11v7q0 .825-.587 1.413Q18.825 20 18 20Z"/></svg></div>
+      </div>
+      <div className="relative border w-[80px]">
         <CircularInput
           radius={40}
           value={progress}
@@ -112,17 +127,7 @@ export default function AudioControls({
           {moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}
         </div>
       )}
-      <input
-        title="volume"
-        type="range"
-        value={volume}
-        step=".02"
-        min="0"
-        max={1}
-        onChange={(e) => setVolume(e.target.value)}
-        // onMouseUp={onScrubEnd}
-        // onKeyUp={onScrubEnd}
-      />
+      
     </div>
   );
 }
