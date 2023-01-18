@@ -15,30 +15,32 @@ const AudioPlayer = ({ audioSrc }: Props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVolume, setCurrentVolume] = useState(1);
   const [progress, setProgress] = useState(0);
-  const [audioMetaData, setAudioMetaData] = useState()
+  const [audioMetaData, setAudioMetaData] = useState();
 
-  let audioMeta:any = {};
-  const audioRef:any = useRef(typeof Audio != "undefined" && new Audio(audioSrc));
+  let audioMeta: any = {};
+  const audioRef: any = useRef(
+    typeof Audio != "undefined" && new Audio(audioSrc)
+  );
   const intervalRef: any = useRef();
 
-  if (typeof Audio != "undefined") { //needed for ssr/ssg
+  if (typeof Audio != "undefined") {
+    //needed for ssr/ssg
     let { duration, volume } = audioRef.current;
-    audioMeta = {duration, trackProgress, volume}
+    audioMeta = { duration, trackProgress, volume };
   }
-  
-  const dragProgress = (e:any) => {
-    audioRef.current.currentTime = e * audioMeta.duration
-    setTrackProgress(e * audioMeta.duration)
-    setProgress(e)
-  }
+
+  const dragProgress = (e: any) => {
+    audioRef.current.currentTime = e * audioMeta.duration;
+    setTrackProgress(e * audioMeta.duration);
+    setProgress(e);
+  };
 
   const startTimer = () => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
-
     intervalRef.current = setInterval(() => {
       setTrackProgress(audioRef.current.currentTime);
-      setProgress(audioRef.current.currentTime / audioMeta.duration)
+      setProgress(audioRef.current.currentTime / audioMeta.duration);
     }, 200); //TODO: look into if 200ms too fast
   };
 
@@ -56,9 +58,14 @@ const AudioPlayer = ({ audioSrc }: Props) => {
     // Pause and clean up on unmount
     audioRef.current.onloadeddata = () => {
       let { duration, volume } = audioRef.current;
-      audioMeta = {duration, trackProgress, volume}
-      setAudioMetaData(audioMeta)
-    }
+      audioMeta = { duration, trackProgress, volume };
+      setAudioMetaData(audioMeta);
+    };
+
+    audioRef.current.onended = () => {
+      setIsPlaying(false);
+    };
+
     return () => {
       audioRef.current.pause();
       clearInterval(intervalRef.current);
@@ -66,8 +73,8 @@ const AudioPlayer = ({ audioSrc }: Props) => {
   }, []);
 
   useEffect(() => {
-      audioRef.current.volume = currentVolume
-    }, [currentVolume]);
+    audioRef.current.volume = currentVolume;
+  }, [currentVolume]);
 
   return (
     <>

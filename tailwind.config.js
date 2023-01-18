@@ -17,7 +17,8 @@ module.exports = {
         "schmarrn-light": "#FFEFB5",
         "rum": "rgba(215, 142, 89, 62)",
         "glass": "rgba(217, 217, 217, 62)",
-        "night": "#21201d"
+        "night": "#21201d",
+        "kaiserschmarrn-raw": "#FFF8E1"
       }
     },
   },

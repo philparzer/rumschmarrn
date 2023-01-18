@@ -9,8 +9,8 @@ import {
   CircularProgress,
   CircularThumb,
 } from "react-circular-input";
-import { useState, useEffect } from "react";
 import moment from "moment";
+import { motion } from "framer-motion";
 
 interface Props {
   isPlaying: boolean;
@@ -22,8 +22,6 @@ interface Props {
   setProgress: any;
 }
 
-const percentage = 66;
-
 export default function AudioControls({
   isPlaying,
   onPlayPauseClick,
@@ -33,11 +31,7 @@ export default function AudioControls({
   progress,
   setProgress,
 }: Props) {
-  const [renderText, setRenderText] = useState(false);
 
-  useEffect(() => {
-    setRenderText(true);
-  }, []);
 
   const onDrag = () => {
     // onPlayPauseClick(false); //TODO: is this behavior ok?
@@ -48,48 +42,84 @@ export default function AudioControls({
   };
 
   return (
-    <div className="flex gap-0">
-      <div className="border w-14 flex flex-col justify-end">
-      <input
-        className="-rotate-90 w-full"
-        title="volume"
-        type="range"
-        value={volume}
-        step=".02"
-        min="0"
-        max={1}
-        onChange={(e) => setVolume(e.target.value)}
-        // onMouseUp={onScrubEnd}
-        // onKeyUp={onScrubEnd}
-      />
-      <div className="self-start self"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6 20q-.825 0-1.412-.587Q4 18.825 4 18v-4q0-.825.588-1.413Q5.175 12 6 12t1.412.587Q8 13.175 8 14v4q0 .825-.588 1.413Q6.825 20 6 20Zm6 0q-.825 0-1.412-.587Q10 18.825 10 18V6q0-.825.588-1.412Q11.175 4 12 4t1.413.588Q14 5.175 14 6v12q0 .825-.587 1.413Q12.825 20 12 20Zm6 0q-.825 0-1.413-.587Q16 18.825 16 18v-7q0-.825.587-1.413Q17.175 9 18 9q.825 0 1.413.587Q20 10.175 20 11v7q0 .825-.587 1.413Q18.825 20 18 20Z"/></svg></div>
+    <>
+    <div className="flex items-center h-[100px] max-w-[80%] mb-[35px]">
+      <div className="w-14 flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div>
+            <input
+              className="w-14 mb-5 -rotate-90 appearance-none accent-burnt h-2 bg-glass rounded-lg"
+              title="volume"
+              type="range"
+              value={volume}
+              step=".02"
+              min="0"
+              max={1}
+              onChange={(e) => setVolume(e.target.value)}
+            />
+          </div>
+          <div
+            className="translate-y-[19px] flex gap-0.5 items-end"
+          >
+            <motion.div
+              animate={isPlaying ? { scaleY: [1 * volume, 1.4 * volume] } : {scaleY: 1*volume}}
+              transition={ isPlaying ? {
+                repeat: Infinity,
+                duration: 0.5,
+                repeatType: "mirror",
+                ease: "easeInOut",
+              } : {repeat: 0}}
+              className="w-1.5 h-2 bg-burnt origin-bottom rounded-sm"
+            ></motion.div>
+            <motion.div
+              animate={isPlaying ? { scaleY: [1 * volume, 1.4 * volume] } : {scaleY: 1*volume}}
+              transition={ isPlaying ? {
+                repeat: Infinity,
+                duration: 0.5,
+                delay: 0.6,
+                repeatType: "mirror",
+                ease: "easeInOut",
+              } : {repeat: 0}}
+              className="w-1.5 h-4 bg-burnt origin-bottom rounded-sm"
+            ></motion.div>
+            <motion.div
+              animate={isPlaying ? { scaleY: [1 * volume, 1.4 * volume] } : {scaleY: 1*volume}}
+              transition={ isPlaying ? {
+                repeat: Infinity,
+                duration: 0.5,
+                delay: 0.3,
+                repeatType: "mirror",
+                ease: "easeInOut",
+              } : {repeat: 0}}
+              className="w-1.5 h-3 bg-burnt origin-bottom rounded-sm"
+            ></motion.div>
+          </div>
+        </div>
       </div>
-      <div className="relative border w-[80px]">
+      <div className="relative w-[68px]">
         <CircularInput
-          radius={40}
+          radius={34}
           value={progress}
           onChange={(e) => setProgress(e)}
         >
           <CircularTrack strokeWidth={8} stroke="rgba(217, 217, 217, 62)" />
-          <CircularProgress strokeWidth={8} stroke="#D9A47E" />
+          <CircularProgress strokeWidth={8}  stroke={"#DEB292"} />
           <CircularThumb
-            r={12}
-            fill="#D78E59"
+            r={9}
+            fill={"#D78E59"}
             onMouseDownCapture={() => onDrag()}
             onMouseUp={() => onUp()}
           />
         </CircularInput>
-        <div className="px-10 absolute  flex top-0 w-full h-full z-10 items-center justify-center pointer-events-none">
+        <div className="absolute w-full flex top-0 h-full z-10 items-center justify-center pointer-events-none">
           {isPlaying === false ? (
             <button
               onClick={() => onPlayPauseClick(true)}
               className="pointer-events-auto"
             >
               <svg
-                x={30}
-                y={30}
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 viewBox="0 0 28 28"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,13 +133,11 @@ export default function AudioControls({
           ) : (
             <button
               onClick={() => onPlayPauseClick(false)}
-              className="pointer-events-auto"
+              className="pointer-events-auto focus:border-0"
             >
               <svg
-                x={30}
-                y={30}
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 viewBox="0 0 20 23"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,13 +149,38 @@ export default function AudioControls({
           )}
         </div>
       </div>
-      {renderText === true && (
-        <div>
-          {moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")} |{" "}
-          {moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}
+      <div className=" h-full flex grow">
+        <p className=" w-20 mx-8 justify-center items-center h-full flex">
+          {moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}
+          
+        </p>
+        {/*TODO: refactor into components and give time frame as prop */}
+        <div className="flex grow scale-y-150 origin-bottom gap-[11px]">
+          <div className="relative  w-[20px]">
+            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
+          </div>
+          <div className="relative w-[20px]">
+            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[90%] w-full absolute bottom-0 rounded-[5px]"></button>
+          </div>
+          <div className="relative  w-[20px]">
+            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
+          </div>
+          <div className="relative  w-[20px]">
+            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[30%] w-full absolute bottom-0 rounded-[5px]"></button>
+          </div>
+          <div className="relative  w-[20px]">
+            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[50%] w-full absolute bottom-0 rounded-[5px]"></button>
+          </div>
         </div>
-      )}
-      
+        <p className="w-20 mx-8 justify-center items-center h-full flex">
+          {moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}
+        </p>
+        </div>
     </div>
+    <div className="flex ml-10 gap-[3%] ">
+            <div className="w-[68%] h-80 bg-schmarrn-light rounded-[10px]"></div>
+            <div className="grow h-40 bg-kaiserschmarrn-raw rounded-[10px]"></div>
+    </div>
+    </>
   );
 }
