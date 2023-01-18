@@ -3,13 +3,6 @@ export interface EpisodeData {
     title: string;
     location: any;
     date: string;
-    i: number;
-    city: string;
-}
-
-export interface Location {
-    hasAnchor: boolean;
-    media: string;
-    title: string;
+    indexNumber: number;
     city: string;
 }

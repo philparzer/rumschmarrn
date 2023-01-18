@@ -18,8 +18,8 @@ export default function EpisodeListEntry({ episode, bgOpacity }: Props) {
     <div style={{background: `rgba(255, 239, 181, ${bgOpacity})`}} className={`flex items-center w-full justify-between bg-schmarrn-light pl-6 lg:pl-10 pr-4 py-2 rounded-[10px] group-hover:!bg-schmarrn-dark transition-all`}>
       <div className="flex grow justify-between items-center">
         <div className="flex grow items-center">
-          <h3 className="font-poppins text-xl mr-[7%]">{episode.i}</h3>
-          <div className="w-full border"><h2 className="font-semibold">{episode.title}</h2><div className="xl:hidden inline-block text-sm w-[250px] sm:w-[300px] md:w-[350px] overflow-hidden  text-ellipsis whitespace-nowrap">{episode.location}, {episode.city} | {new Date(episode.date).toLocaleDateString("de")}</div></div>
+          <h3 className="font-poppins text-xl mr-[7%]">{episode.indexNumber}</h3>
+          <div className="w-full"><h2 className="font-semibold">{episode.title}</h2><div className="xl:hidden inline-block text-sm w-[250px] sm:w-[300px] md:w-[350px] overflow-hidden  text-ellipsis whitespace-nowrap">{episode.location}, {episode.city} | {new Date(episode.date).toLocaleDateString("de")}</div></div>
         </div>
         <div className="hidden xl:block text-sm">{episode.location}, {episode.city} | {new Date(episode.date).toLocaleDateString("de")}</div>
       </div>

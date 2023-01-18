@@ -25,7 +25,7 @@ if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
 export async function getStaticProps({ params }: any) {
   
   const episodes:any = await builder.getAll("episodes", {});
-  let formattedEpisodes = episodes.map((episode: any, i:number):EpisodeData => {return {link: episode.data.episode.value.data.url, title: episode.data.title, location: episode.data.location, city: episode.data.city, date: episode.data.date, i: i+1}}) // TODO: sort before
+  let formattedEpisodes = episodes.map((episode: any, i:number):EpisodeData => {return {link: episode.data.episode.value.data.url, title: episode.data.title, location: episode.data.location, city: episode.data.city, date: episode.data.date, indexNumber:episode.data.indexNumber}}) // TODO: sort before
   let sortedEpisodes = formattedEpisodes.sort((a:EpisodeData, b:EpisodeData) => new Date(b.date).getTime() - new Date(a.date).getTime())
   return {
     props: {

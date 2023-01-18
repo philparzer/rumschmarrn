@@ -4,7 +4,6 @@ WHAT:
 */
 
 import { AnyMxRecord } from "dns";
-import { Location } from "../../types/interfaces";
 
 interface Props {
   episode: any;
