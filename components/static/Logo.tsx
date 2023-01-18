@@ -16,7 +16,7 @@ export default function Logo({pathToHome, inverted=false}: Props) {
 <path d="M24.7221 11.1843C24.6067 10.5689 25.0788 10 25.7049 10H51.2951C51.9212 10 52.3933 10.5689 52.2779 11.1843L51 18H26L24.7221 11.1843Z" fill="#D9D9D9" fillOpacity="0.62"/>
 <path d="M26 18H51L49 33H28L26 18Z" fill="#D78E59" fillOpacity="0.62"/>
 </svg>
-    <p className={`${inverted ? "text-white" : "text-burnt"} font-baloo text-lg font-semibold group-hover:tracking-wide transition-all`}>rumschmarrn</p>
+    {inverted && <p className={`${inverted ? "text-white" : "text-burnt"} font-baloo text-lg font-semibold group-hover:tracking-wide transition-all`}>rumschmarrn</p>}
     </Link>
   </div>
 }
