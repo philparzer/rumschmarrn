@@ -5,24 +5,28 @@ audio player to be rendered inside Player component
 
 import { useState, useEffect, useRef } from "react";
 import AudioControls from "./AudioControls";
+import useResize from "../../hooks/useResize"
+import AudioControlsMobile from "./AudioControlsMobile";
 
 interface Props {
   audioSrc: string;
+  episode: any;
 }
 
-const AudioPlayer = ({ audioSrc }: Props) => {
+const AudioPlayer = ({ audioSrc, episode }: Props) => {
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVolume, setCurrentVolume] = useState(1);
   const [progress, setProgress] = useState(0);
   const [audioMetaData, setAudioMetaData] = useState();
+  const {width} = useResize();
+
 
   let audioMeta: any = {};
   const audioRef: any = useRef(
     typeof Audio != "undefined" && new Audio(audioSrc)
   );
   const intervalRef: any = useRef();
-
   if (typeof Audio != "undefined") {
     //needed for ssr/ssg
     let { duration, volume } = audioRef.current;
@@ -78,6 +82,7 @@ const AudioPlayer = ({ audioSrc }: Props) => {
 
   return (
     <>
+      {width >= 1024 ? 
       <AudioControls
         isPlaying={isPlaying}
         onPlayPauseClick={setIsPlaying}
@@ -87,6 +92,18 @@ const AudioPlayer = ({ audioSrc }: Props) => {
         progress={progress}
         setProgress={dragProgress}
       />
+      :
+      <AudioControlsMobile
+        episode={episode}
+        isPlaying={isPlaying}
+        onPlayPauseClick={setIsPlaying}
+        audioMeta={audioMeta}
+        volume={currentVolume}
+        setVolume={setCurrentVolume}
+        progress={progress}
+        setProgress={dragProgress}
+      />
+      }
     </>
   );
 };

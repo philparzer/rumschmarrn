@@ -155,20 +155,20 @@ export default function AudioControls({
           
         </p>
         {/*TODO: refactor into components and give time frame as prop */}
-        <div className="flex grow scale-y-150 origin-bottom gap-[11px]">
-          <div className="relative  w-[20px]">
+        <div className="grid grid-cols-10 grow scale-y-150 origin-bottom gap-[11px]">
+          <div className="relative">
             <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
-          <div className="relative w-[20px]">
+          <div className="relative">
             <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[90%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
-          <div className="relative  w-[20px]">
+          <div className="relative ">
             <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
-          <div className="relative  w-[20px]">
+          <div className="relative ">
             <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[30%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
-          <div className="relative  w-[20px]">
+          <div className="relative ">
             <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[50%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
         </div>

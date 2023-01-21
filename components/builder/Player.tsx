@@ -20,7 +20,7 @@ export default function Player({ audioSrc, episode }: Props) {
           <EpisodeTitle
             episode={episode}
           />
-          <AudioPlayer audioSrc={audioSrc}/>
+          <AudioPlayer audioSrc={audioSrc} episode={episode}/>
         </>
   );
 }
