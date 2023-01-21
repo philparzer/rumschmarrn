@@ -28,18 +28,14 @@ function App(props: any) {
         localStorage.getItem("theme") === undefined ||
         localStorage.getItem("theme") === JSON.stringify(ColorTheme.System)
       ) {
-        console.log("hi")
-        console.log("checking local storage, got " + localStorage.getItem("theme"))
   
         if (window.matchMedia) {
           if (window.matchMedia("(prefers-color-scheme: dark)").matches
           ) {
-            console.log("bootup, I Prefer DARK")
             setTheme(ColorTheme.Dark);
             setToggle(ColorTheme.System)
           }
           else {
-            console.log("bootup, I prefer LIGHT")
             setTheme(ColorTheme.Light);
             setToggle(ColorTheme.System);
           }
@@ -48,7 +44,6 @@ function App(props: any) {
       }
   
       if (localStorage.getItem("theme") === JSON.stringify(ColorTheme.Dark)) {
-        console.log("i set dark")
         setThemeLocalStorage(ColorTheme.Dark)
       }
   
