@@ -28,7 +28,7 @@ function App(props: any) {
         localStorage.getItem("theme") === undefined ||
         localStorage.getItem("theme") === JSON.stringify(ColorTheme.System)
       ) {
-  
+        console.log("hi")
         console.log("checking local storage, got " + localStorage.getItem("theme"))
   
         if (window.matchMedia) {
@@ -39,6 +39,7 @@ function App(props: any) {
             setToggle(ColorTheme.System)
           }
           else {
+            console.log("bootup, I prefer LIGHT")
             setTheme(ColorTheme.Light);
             setToggle(ColorTheme.System);
           }
@@ -51,7 +52,7 @@ function App(props: any) {
         setThemeLocalStorage(ColorTheme.Dark)
       }
   
-      else {
+      else if (localStorage.getItem("theme") ===  JSON.stringify(ColorTheme.Light)) {
         setTheme(ColorTheme.Light);
         setToggle(ColorTheme.Light);
       }
