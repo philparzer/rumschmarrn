@@ -16,7 +16,7 @@ export default function EpisodeTitle({ episode }: Props) {
     <>
       {width >= 1024 && (
         <div className="flex w-full justify-between flex-row mb-24">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-10 dark:text-white">
             <p className="text-4xl font-poppins leading-none">
               {episode.value.data.indexNumber}
             </p>

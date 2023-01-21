@@ -29,7 +29,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
           <path
             d="M709 5.5L5.5 170L143 764.5L848.5 600.5L709 5.5Z"
             fill="transparent"
-            className="stroke-schmarrn-dark"
+            className="stroke-schmarrn-dark dark:stroke-rum"
             strokeWidth="8"
             strokeLinecap="round"
           />
@@ -42,7 +42,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              className="stroke-schmarrn-light"
+              className="stroke-schmarrn-light dark:stroke-rum"
               d="M709 5.5L5.5 170L143 764.5L848.5 600.5L709 5.5Z"
               fill="transparent"
               strokeWidth="8"

@@ -12,10 +12,10 @@ export default function EpisodeListEntry({ episode, bgOpacity }: Props) {
   
   return (
     <Link
-      className="flex justify-between items-center group"
+      className="flex justify-between items-center group dark:text-burnt"
       href={episode.link}
     >
-    <div style={{background: `rgba(255, 239, 181, ${bgOpacity})`}} className={`flex items-center w-full justify-between bg-schmarrn-light pl-6 lg:pl-10 pr-4 py-2 rounded-[10px] group-hover:!bg-schmarrn-dark transition-all`}>
+    <div style={{background: `rgba(255, 239, 181, ${bgOpacity})`}} className={`flex items-center w-full justify-between dark:group-hover:!bg-rum  bg-schmarrn-light pl-6 lg:pl-10 pr-4 py-2 rounded-[10px] group-hover:!bg-schmarrn-dark transition-all`}>
       <div className="flex grow justify-between items-center">
         <div className="flex grow items-center">
           <h3 className="font-poppins text-xl mr-[7%]">{episode.indexNumber}</h3>

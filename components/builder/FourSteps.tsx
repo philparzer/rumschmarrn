@@ -66,7 +66,7 @@ export default function FourSteps({
             width="47"
             height="21"
             transform="rotate(-22.0212 0 53.6226)"
-            fill="#FFEFB5"
+            className="fill-schmarrn-dark dark:fill-rum"
             fill-opacity="0.6"
           />
           <rect
@@ -75,7 +75,7 @@ export default function FourSteps({
             width="47"
             height="21"
             transform="rotate(-31.9855 62 24.8961)"
-            fill="#FFEFB5"
+            className="fill-schmarrn-dark dark:fill-rum"
             fill-opacity="0.6"
           />
         </svg>
@@ -124,7 +124,7 @@ export default function FourSteps({
             width="47"
             height="21"
             transform="rotate(-22.0212 0 53.6226)"
-            fill="#FFEFB5"
+            className="fill-schmarrn-dark dark:fill-rum"
             fill-opacity="0.6"
           />
           <rect
@@ -133,7 +133,7 @@ export default function FourSteps({
             width="47"
             height="21"
             transform="rotate(-31.9855 62 24.8961)"
-            fill="#FFEFB5"
+            className="fill-schmarrn-dark dark:fill-rum"
             fill-opacity="0.6"
           />
         </svg>
@@ -182,7 +182,7 @@ export default function FourSteps({
             width="47"
             height="21"
             transform="rotate(-22.0212 0 53.6226)"
-            fill="#FFEFB5"
+            className="fill-schmarrn-dark dark:fill-rum"
             fill-opacity="0.6"
           />
           <rect
@@ -191,7 +191,7 @@ export default function FourSteps({
             width="47"
             height="21"
             transform="rotate(-31.9855 62 24.8961)"
-            fill="#FFEFB5"
+            className="fill-schmarrn-dark dark:fill-rum"
             fill-opacity="0.6"
           />
         </svg>

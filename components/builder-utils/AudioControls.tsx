@@ -48,7 +48,7 @@ export default function AudioControls({
         <div className="flex flex-col items-center">
           <div>
             <input
-              className="w-14 mb-5 -rotate-90 appearance-none accent-burnt h-2 bg-glass rounded-lg"
+              className="w-14 mb-5 -rotate-90 appearance-none accent-burnt h-2 bg-glass dark:bg-night dark:accent-white rounded-lg cursor-pointer"
               title="volume"
               type="range"
               value={volume}
@@ -69,7 +69,7 @@ export default function AudioControls({
                 repeatType: "mirror",
                 ease: "easeInOut",
               } : {repeat: 0}}
-              className="w-1.5 h-2 bg-burnt origin-bottom rounded-sm"
+              className="w-1.5 h-2 bg-burnt dark:bg-light origin-bottom rounded-sm"
             ></motion.div>
             <motion.div
               animate={isPlaying ? { scaleY: [1 * volume, 1.4 * volume] } : {scaleY: 1*volume}}
@@ -80,7 +80,7 @@ export default function AudioControls({
                 repeatType: "mirror",
                 ease: "easeInOut",
               } : {repeat: 0}}
-              className="w-1.5 h-4 bg-burnt origin-bottom rounded-sm"
+              className="w-1.5 h-4 bg-burnt dark:bg-light origin-bottom rounded-sm"
             ></motion.div>
             <motion.div
               animate={isPlaying ? { scaleY: [1 * volume, 1.4 * volume] } : {scaleY: 1*volume}}
@@ -91,7 +91,7 @@ export default function AudioControls({
                 repeatType: "mirror",
                 ease: "easeInOut",
               } : {repeat: 0}}
-              className="w-1.5 h-3 bg-burnt origin-bottom rounded-sm"
+              className="w-1.5 h-3 bg-burnt dark:bg-light origin-bottom rounded-sm"
             ></motion.div>
           </div>
         </div>
@@ -102,10 +102,11 @@ export default function AudioControls({
           value={progress}
           onChange={(e) => setProgress(e)}
         >
-          <CircularTrack strokeWidth={8} stroke="rgba(217, 217, 217, 62)" />
-          <CircularProgress strokeWidth={8}  stroke={"#DEB292"} />
+          <CircularTrack strokeWidth={8} className="stroke-[rgba(217, 217, 217, 0.62)] dark:stroke-night" />
+          <CircularProgress strokeWidth={8} className="stroke-[#DEB292]" />
           <CircularThumb
             r={9}
+            className="cursor-pointer"
             fill={"#D78E59"}
             onMouseDownCapture={() => onDrag()}
             onMouseUp={() => onUp()}
@@ -126,7 +127,7 @@ export default function AudioControls({
               >
                 <path
                   d="M26.5 13.134C27.1667 13.5189 27.1667 14.4811 26.5 14.866L8.5 25.2583C7.83333 25.6432 7 25.1621 7 24.3923L7 3.60769C7 2.83789 7.83334 2.35677 8.5 2.74167L26.5 13.134Z"
-                  fill="#404040"
+                  className="fill-burnt dark:fill-white"
                 />
               </svg>
             </button>
@@ -142,8 +143,8 @@ export default function AudioControls({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <rect width="7" height="23" fill="#404040" />
-                <rect x="13" width="7" height="23" fill="#404040" />
+                <rect width="7" height="23"  className="fill-burnt dark:fill-white" />
+                <rect x="13" width="7" height="23" className="fill-burnt dark:fill-white" />
               </svg>
             </button>
           )}
@@ -157,19 +158,19 @@ export default function AudioControls({
         {/*TODO: refactor into components and give time frame as prop */}
         <div className="grid grid-cols-10 grow scale-y-150 origin-bottom gap-[11px]">
           <div className="relative">
-            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
+            <button className="bg-burnt dark:bg-night dark:hover:bg-schmarrn-dark hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
           <div className="relative">
-            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[90%] w-full absolute bottom-0 rounded-[5px]"></button>
+            <button className="bg-burnt dark:bg-night dark:hover:bg-schmarrn-dark hover:bg-schmarrn-dark transition-colors h-[90%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
           <div className="relative ">
-            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
+            <button className="bg-burnt dark:bg-night dark:hover:bg-schmarrn-dark hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
           <div className="relative ">
-            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[30%] w-full absolute bottom-0 rounded-[5px]"></button>
+            <button className="bg-burnt dark:bg-night dark:hover:bg-schmarrn-dark hover:bg-schmarrn-dark transition-colors h-[30%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
           <div className="relative ">
-            <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[50%] w-full absolute bottom-0 rounded-[5px]"></button>
+            <button className="bg-burnt dark:bg-night dark:hover:bg-schmarrn-dark hover:bg-schmarrn-dark transition-colors h-[50%] w-full absolute bottom-0 rounded-[5px]"></button>
           </div>
         </div>
         <p className="w-20 mx-8 justify-center items-center h-full flex">
@@ -179,7 +180,7 @@ export default function AudioControls({
     </div>
     <div className="flex ml-10 gap-[3%] ">
             <div className="w-[68%] h-80 bg-schmarrn-light rounded-[10px]"></div>
-            <div className="grow h-40 bg-kaiserschmarrn-raw rounded-[10px]"></div>
+            <div className="grow h-40 bg-kaiserschmarrn-raw dark:bg-rum rounded-[10px]"></div>
     </div>
     </>
   );

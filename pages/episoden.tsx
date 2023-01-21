@@ -60,7 +60,7 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle }: a
       <Layout>
         <section className="flex gap-10 items-center mb-10 lg:mb-20 flex-wrap">
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 lg:items-center ">
-        <h1 className="text-[40px] font-poppins">Episoden</h1>
+        <h1 className="text-[40px] font-poppins dark:text-white">Episoden</h1>
         <input className="bg-burnt bg-opacity-[7%] rounded-[10px] px-4 placeholder:text-burnt py-2 h-10 focus:outline-rum" placeholder='Suchen' ref={inputRef} onChange={(e) => search(e.target.value)}></input>
         </div>
         {filteredEpisodes.length === 0 && 
