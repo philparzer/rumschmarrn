@@ -31,17 +31,19 @@ function App(props: any) {
   
         console.log("checking local storage, got " + localStorage.getItem("theme"))
   
-        if (
-          window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-        ) {
-          console.log("bootup, I Prefer DARK")
-          setTheme(ColorTheme.Dark);
-          setToggle(ColorTheme.System)
-        }
-  
+        if (window.matchMedia) {
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            console.log("bootup, I Prefer DARK")
+            setTheme(ColorTheme.Dark);
+            setToggle(ColorTheme.System)
+          }
+          else {
+            setTheme(ColorTheme.Light);
+            setToggle(ColorTheme.System);
+          }
+          }
         return
-        
       }
   
       if (localStorage.getItem("theme") === JSON.stringify(ColorTheme.Dark)) {
