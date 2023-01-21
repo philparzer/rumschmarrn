@@ -16,7 +16,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
   //FIXME: ios
   return (
     <section className="w-full flex flex-col items-center justify-center my-20 mb-60 md:mb-40 md:my-40">
-      <h2 className="font-inter font-semibold text-4xl relative z-10 mb-10 pointer-events-none">
+      <h2 className="font-inter font-semibold text-4xl relative z-10 mb-10 pointer-events-none dark:text-white">
         {title}
       </h2>
       <div className="relative flex h-[50vh] max-h-[520px] w-full items-center justify-center translate-x-[88%] sm:translate-x-[40%] translate-y-10 lg:translate-x-0">
@@ -54,7 +54,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
               <Link key={i} href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group ">
               <motion.div
                 
-                className=" absolute font-semibold items-center top-0 left-0 bg-burnt transition-colors text-white rounded-[10px] group-hover:bg-rum px-4 py-1 flex gap-2 "
+                className=" absolute font-semibold items-center top-0 left-0 bg-burnt dark:bg-night transition-colors text-white rounded-[10px] group-hover:bg-rum px-4 py-1 flex gap-2 "
                 style={{
                   offsetPath:
                     'path("M709 5.5L5.5 170L143 764.5L848.5 600.5L709 5.5Z")',

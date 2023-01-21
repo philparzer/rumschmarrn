@@ -8,10 +8,11 @@ import Footer from '../components/static/Footer'
 import Nav from '../components/static/Nav';
 import Layout from "../components/static/Layout"
 import EpisodeList from '../components/static/EpisodeList';
-import { EpisodeData } from "../types/interfaces";
+import { EpisodeData } from "../shared-ts/interfaces";
 import MainHeadline from '../components/builder/MainHeadline';
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Button from '../components/static/Button';
+import { ColorTheme } from "../shared-ts/enums";
 
 /*
   Initialize the Builder SDK with your organization's API Key
@@ -35,7 +36,7 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export default function Page({ page, episodes }: any) {
+export default function Page({ page, episodes, setThemeLocalStorage, toggle }: any) {
     
     const [filteredEpisodes, setFilteredEpisodes] = useState(episodes);
     const inputRef:any = useRef(0)
@@ -46,6 +47,7 @@ export default function Page({ page, episodes }: any) {
         setFilteredEpisodes(tempFilter)
     }
 
+
   return (
     <>
       <Head>
@@ -53,8 +55,8 @@ export default function Page({ page, episodes }: any) {
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav />
-      <div className="mb-40"></div>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage}/>
+      <div className="h-40"></div>
       <Layout>
         <section className="flex gap-10 items-center mb-10 lg:mb-20 flex-wrap">
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 lg:items-center ">

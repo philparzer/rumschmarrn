@@ -7,6 +7,8 @@ import dynamic from 'next/dynamic';
 import Footer from '../components/static/Footer'
 import Nav from '../components/static/Nav';
 import Layout from "../components/static/Layout"
+import { useEffect, useState } from "react"
+import { ColorTheme } from "../shared-ts/enums"
 
 /*
   Initialize the Builder SDK with your organization's API Key
@@ -62,7 +64,7 @@ export async function getStaticPaths() {
   };
 }
 
-export default function Page({ page }: any) {
+export default function Page({ page, toggle, setThemeLocalStorage }: any) {
   const router = useRouter();
   /*
     This flag indicates if you are viewing the page in the Builder editor.
@@ -81,6 +83,7 @@ export default function Page({ page }: any) {
     return <DefaultErrorPage statusCode={404} />;
   }
 
+
   return (
     <>
       <Head>
@@ -88,8 +91,8 @@ export default function Page({ page }: any) {
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav />
-      <div className="mb-40"></div>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage}/>
+      <div className="h-40"></div>
       {/* Render the Builder page */}
       <Layout>
       <BuilderComponent model="page" content={page} options={{includeRefs: true}}/>

@@ -1,0 +1,1 @@
+export enum ColorTheme { Light, System, Dark }

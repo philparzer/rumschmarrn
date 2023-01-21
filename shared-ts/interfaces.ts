@@ -6,3 +6,4 @@ export interface EpisodeData {
     indexNumber: number;
     city: string;
 }
+

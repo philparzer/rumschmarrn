@@ -19,3 +19,6 @@
     src: url("../public/fonts/Poppins-SemiBold.ttf");
     font-display: swap;
   }
+
+
+  body:has(div.dark) { background-color: #312F2A }

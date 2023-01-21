@@ -8,5 +8,5 @@ interface Props {
 }
 
 export default function MainHeadline({ title }: Props) {
-  return <h1 className="text-[40px] font-poppins mb-10 lg:mb-20">{title}</h1>;
+  return <h1 className="text-[40px] font-poppins mb-10 lg:mb-20 dark:text-white">{title}</h1>;
 }

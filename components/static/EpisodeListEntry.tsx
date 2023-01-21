@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EpisodeData } from "../../types/interfaces";
+import { EpisodeData } from "../../shared-ts/interfaces";
 
 interface Props {
   episode: any;

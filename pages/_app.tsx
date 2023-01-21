@@ -2,15 +2,84 @@ import { AppProps } from "next/app";
 import "../styles/globals.css";
 import { builder, Builder } from "@builder.io/react";
 import dynamic from "next/dynamic";
+import { ColorTheme } from "../shared-ts/enums"
+import { useState, useEffect } from "react"
+
 
 if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
   builder.init(process.env.NEXT_PUBLIC_BUILDERIO_KEY);
 }
 
+
 function App(props: any) {
+
+    //DARK / LIGHT MODE
+    const [theme, setTheme] = useState<ColorTheme>(ColorTheme.System);
+    const [toggle, setToggle] = useState<ColorTheme>(ColorTheme.System)
+  
+    const setThemeLocalStorage = (theme: ColorTheme) => {
+      localStorage.setItem("theme", JSON.stringify(theme));
+      setTheme(theme)
+      setToggle(theme)
+    };
+  
+    useEffect(() => {
+      if (
+        localStorage.getItem("theme") === undefined ||
+        localStorage.getItem("theme") === JSON.stringify(ColorTheme.System)
+      ) {
+  
+        console.log("checking local storage, got " + localStorage.getItem("theme"))
+  
+        if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+          console.log("bootup, I Prefer DARK")
+          setTheme(ColorTheme.Dark);
+          setToggle(ColorTheme.System)
+        }
+  
+        return
+        
+      }
+  
+      if (localStorage.getItem("theme") === JSON.stringify(ColorTheme.Dark)) {
+        console.log("i set dark")
+        setThemeLocalStorage(ColorTheme.Dark)
+      }
+  
+      else {
+        setTheme(ColorTheme.Light);
+        setToggle(ColorTheme.Light);
+      }
+  
+    }, []);
+  
+    useEffect(() => {
+      if (theme === ColorTheme.System) {
+        if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+          setTheme(ColorTheme.Dark);
+        }
+  
+        else {
+          setTheme(ColorTheme.Light)
+        }
+      }
+    }, [theme])
+
+
+  props.pageProps.toggle = toggle
+  props.pageProps.setThemeLocalStorage = setThemeLocalStorage
+
   return (
-    <div className="selection:bg-rum selection:text-white font-inter overflow-x-hidden text-burnt">
+    <div className={`${toggle == ColorTheme.Dark || (toggle == ColorTheme.System && theme == ColorTheme.Dark) ? "dark" : `${theme}`} selection:bg-rum selection:text-white font-inter overflow-x-hidden`}>
+      <div className="dark:bg-burnt dark:text-light">
       <props.Component {...props.pageProps} />
+      </div>
     </div>
   );
 }
