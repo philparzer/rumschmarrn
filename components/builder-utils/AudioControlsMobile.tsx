@@ -48,7 +48,7 @@ export default function AudioControlsMobile({
         drag={"y"}
         dragConstraints={{top: 0, bottom: 100}}
         dragSnapToOrigin={false}
-        dragElastic={0.2}
+        dragElastic={0}
         transition={{
           type: "spring",
           damping: 40,
