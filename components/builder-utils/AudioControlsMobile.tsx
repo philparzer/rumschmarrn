@@ -46,9 +46,14 @@ export default function AudioControlsMobile({
       <motion.div
         className="fixed bottom-0 left-0 w-full translate-y-[100px] bg-white dark:bg-night top-shadow"
         drag={"y"}
-        dragConstraints={{ left: 0, right: 0, top: 100, bottom: 0 }}
+        dragConstraints={{top: 0, bottom: 100}}
         dragSnapToOrigin={false}
-        dragTransition={{ timeConstant: 200 }}
+        dragElastic={0.2}
+        transition={{
+          type: "spring",
+          damping: 40,
+          stiffness: 400
+        }}
       >
         <div className="flex h-[66px] items-center gap-[20px] px-[5%]">
           <p className="text-xl font-poppins dark:text-white">{episode.value.data.indexNumber}</p>
