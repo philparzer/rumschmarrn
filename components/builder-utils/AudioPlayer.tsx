@@ -11,9 +11,11 @@ import AudioControlsMobile from "./AudioControlsMobile";
 interface Props {
   audioSrc: string;
   episode: any;
+  annotators: any[];
+  timestamps: any[];
 }
 
-const AudioPlayer = ({ audioSrc, episode }: Props) => {
+const AudioPlayer = ({ audioSrc, episode, annotators, timestamps }: Props) => {
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVolume, setCurrentVolume] = useState(1);
@@ -91,6 +93,8 @@ const AudioPlayer = ({ audioSrc, episode }: Props) => {
         setVolume={setCurrentVolume}
         progress={progress}
         setProgress={dragProgress}
+        annotators={annotators}
+        timestamps={timestamps}
       />
       :
       <AudioControlsMobile

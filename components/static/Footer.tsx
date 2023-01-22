@@ -23,6 +23,7 @@ export default function Footer() {
                 <h3 className="text-schmarrn-dark text-xs">Rechtliches</h3>
                 <Link className="transition hover:text-rum" href="/impressum">Impressum</Link>
                 <Link className="transition hover:text-rum" href="/datenschutz">Datenschutz</Link>
+                <a className="transition hover:text-rum" href="mailto:rumschmarrn@gmail.com">Kontakt</a>
             </div>
         </div>
     </footer>

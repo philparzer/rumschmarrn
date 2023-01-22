@@ -180,16 +180,22 @@ Builder.registerComponent(
         type: "list",
         subFields: [
           {
-            name: "time",
+            name: "startTime",
             type: "string",
           },
           {
-            name: "annotations",
-            type: "list",
-            subFields: [
+            name: "endTime",
+            type: "string",
+          },
+          {
+            name: "barHeight",
+            type: "text",
+            enum: ["30%", "50%", "70%", "90%"],
+            description: "pick height, in percent of container"
+          },
               {
                 name: "episodeQuote",
-                type: "string",
+                type: "longText",
               },
               {
                 name: "nussAnnotations",
@@ -302,8 +308,6 @@ Builder.registerComponent(
                     type: "string"
                   }
                 ]
-              },
-            ],
             
           },
         ],
