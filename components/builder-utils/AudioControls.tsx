@@ -17,6 +17,10 @@ import SchmarrnButton from "../static/SchmarrnButton";
 import SourceBox from "../builder-utils/SourceBox";
 import QuoteBox from "./QuoteBox";
 import TimestampButtons from "./TimestampButtons";
+import Image from "next/image"
+import { AnnotatorData } from "../../shared-ts/interfaces";
+import { stringify } from "querystring";
+import AnnotatorBox from "./AnnotatorBox";
 
 interface Props {
   isPlaying: boolean;
@@ -30,7 +34,7 @@ interface Props {
   timestamps: any[];
 }
 
-const annotatorLookup = [
+const annotatorLookup:any = [
   "nussAnnotations",
   "sahneAnnotations",
   "blaubeerAnnotations",
@@ -60,7 +64,18 @@ export default function AudioControls({
   const [activeAnnotator, setActiveAnnotator] = useState<SchmarrnType>(
     SchmarrnType.Blaubeer
   ); //TODO: init via local storage
+  const [activeAnnotatorData, setActiveAnnotatorData] = useState<AnnotatorData>()
   
+
+  useEffect(() => {
+    annotators.forEach((annotator) => {
+      if (annotator.annotatorType === annotatorLookup[activeAnnotator]) {
+        return  setActiveAnnotatorData(annotator);
+      }
+    })
+  }, [activeAnnotator])
+
+
   console.log("DATA:");
   console.log(annotators);
   console.log(timestamps);
@@ -227,21 +242,7 @@ export default function AudioControls({
         </div>
       </div>
 
-      <div className="ml-10 flex my-5 gap-5 items-center">
-        <SchmarrnButton
-          handler={setActiveAnnotator}
-          type={SchmarrnType.Blaubeer}
-        />
-        <SchmarrnButton
-          handler={setActiveAnnotator}
-          type={SchmarrnType.Apfel}
-        />
-        <SchmarrnButton handler={setActiveAnnotator} type={SchmarrnType.Nuss} />
-        <SchmarrnButton
-          handler={setActiveAnnotator}
-          type={SchmarrnType.Sahne}
-        />
-      </div>
+      <AnnotatorBox activeAnnotator={activeAnnotator} activeAnnotatorData={activeAnnotatorData} setActiveAnnotator={setActiveAnnotator}/>
     </>
   );
 }

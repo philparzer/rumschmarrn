@@ -28,10 +28,10 @@ export default function SourceBox({visibleTimestamp, activeAnnotator, timestamps
 
                     <li key={i}>
                       <a href={annotation.reasoningLink} className="flex flex-col gap-1">
-                        <div >[{i + 1}]<span className="text-xs">{annotation.reasoningType}</span></div>
-                        <div className="flex flex-col">
-                          <div>{annotation.reasoningSource}</div>
-                          <div>{annotation.reasoningBody}</div>
+                        <div className="flex gap-1 items-end">[{i + 1}]<span className="text-xs">{annotation.reasoningType}</span></div>
+                        <div className="flex flex-col ml-6">
+                          <div className="font-poppins leading-none">{annotation.reasoningSource}</div>
+                          <div className="text-sm">{annotation.reasoningBody}</div>
                         </div>
                       </a>
                     </li>

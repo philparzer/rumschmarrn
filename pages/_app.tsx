@@ -167,7 +167,7 @@ Builder.registerComponent(
           {
             name: "annotatorType",
             type: "string",
-            enum: ["nuss", "apfel", "sahne", "blaubeer"],
+            enum: ["nussAnnotations", "apfelAnnotations", "sahneAnnotations", "blaubeerAnnotations"],
           },
           {
             name: "annotatorPic",

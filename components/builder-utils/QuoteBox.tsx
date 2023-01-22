@@ -17,8 +17,8 @@ export default function QuoteBox({timestamps, visibleTimestamp, activeAnnotator,
             <>klick auf einen Timestamp //TODO: change</>
           ) : (
             <div>
-              <h3 className="mb-10">
-                {JSON.stringify(timestamps[visibleTimestamp].episodeQuote)}
+              <h3 className="mb-10 text-lg font-poppins">
+                <span className="text-base">{"[...]"}</span>{(timestamps[visibleTimestamp].episodeQuote)}<span className="text-base">{"[...]"}</span>
               </h3>
               <ul className="flex flex-col gap-5">
                 {visibleTimestamp !== undefined &&

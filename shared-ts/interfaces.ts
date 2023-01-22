@@ -7,3 +7,9 @@ export interface EpisodeData {
     city: string;
 }
 
+export interface AnnotatorData {
+    annotatorName: string;
+    annotatorPic: string;
+    annotatorPosition: string;
+    annotatorType: "nussAnnotations" | "sahneAnnotations" | "blaubeerAnnotations" | "apfelAnnotations";
+  }
