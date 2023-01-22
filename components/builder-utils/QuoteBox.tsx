@@ -26,7 +26,7 @@ export default function QuoteBox({timestamps, visibleTimestamp, activeAnnotator,
                     annotatorLookup[activeAnnotator]
                   ].map((annotation: any, i: number) => (
                     <li key={i} className="flex gap-5">
-                      <span>[{i + 1}]</span>"{annotation.content}"
+                      <span>[{i + 1}]</span>&quot;{annotation.content}&quot;
                     </li>
                   ))}
               </ul>

@@ -213,7 +213,7 @@ export default function AudioControls({
           <p className=" w-20 mx-8 justify-center items-center h-full flex">
             {moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}
           </p>
-          <TimestampButtons timestamps={timestamps} setVisibleTimestamp={setVisibleTimestamp}/>
+          <TimestampButtons timestamps={timestamps} setVisibleTimestamp={setVisibleTimestamp} visibleTimestamp={visibleTimestamp}/>
           <p className="w-20 mx-8 justify-center items-center h-full flex">
             {moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}
           </p>
@@ -226,7 +226,7 @@ export default function AudioControls({
           <SourceBox visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
         </div>
       </div>
-      
+
       <div className="ml-10 flex my-5 gap-5 items-center">
         <SchmarrnButton
           handler={setActiveAnnotator}
