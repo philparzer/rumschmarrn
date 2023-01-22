@@ -21,7 +21,7 @@ module.exports = {
         "night": "#201F1B",
         "kaiserschmarrn-raw": "#FFF8E1",
         "light": "rgba(255, 255, 255, 0.8)"
-      }
+      },
     },
   },
   plugins: [],

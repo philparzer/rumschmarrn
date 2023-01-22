@@ -21,6 +21,8 @@ import Image from "next/image"
 import { AnnotatorData } from "../../shared-ts/interfaces";
 import { stringify } from "querystring";
 import AnnotatorBox from "./AnnotatorBox";
+import { time } from "console";
+import { hhmmssToSec } from "../../utils/time";
 
 interface Props {
   isPlaying: boolean;
@@ -32,6 +34,7 @@ interface Props {
   setProgress: any;
   annotators: any[];
   timestamps: any[];
+  skipToTime: any;
 }
 
 const annotatorLookup:any = [
@@ -51,6 +54,7 @@ export default function AudioControls({
   setProgress,
   annotators,
   timestamps,
+  skipToTime,
 }: Props) {
   const onDrag = () => {
     // onPlayPauseClick(false); //TODO: is this behavior ok?
@@ -75,10 +79,39 @@ export default function AudioControls({
     })
   }, [activeAnnotator])
 
+  console.log(timestamps)
 
-  console.log("DATA:");
-  console.log(annotators);
-  console.log(timestamps);
+  useEffect(() => {
+
+    let foundTimeStamp = false;
+
+    timestamps.forEach((timestamp:any, i:number) => {
+      let timeStampStartTime = hhmmssToSec(timestamp.startTime);
+      let timeStampEndTime = hhmmssToSec(timestamp.endTime);
+
+      console.log("-------------")
+      console.log("TRACK PROGRESS " + Math.floor(audioMeta.trackProgress))
+      console.log("-------------")
+      console.log(i)
+      console.log("starting time: " + timeStampStartTime)
+      console.log("end time: " + timeStampEndTime)
+      
+      console.log("is visible: " + (Math.floor(audioMeta.trackProgress) >= timeStampStartTime && timeStampEndTime >= Math.floor(audioMeta.trackProgress)))
+
+      if (Math.floor(audioMeta.trackProgress) >= timeStampStartTime && timeStampEndTime >= Math.floor(audioMeta.trackProgress)) {
+        console.log("changing to " + i)
+        foundTimeStamp = true;
+        setVisibleTimestamp(i)
+      }
+      
+    })
+
+    if (foundTimeStamp === false) {
+      setVisibleTimestamp(undefined)
+    }
+
+  }, [audioMeta])
+
 
   return (
     <>
@@ -228,7 +261,7 @@ export default function AudioControls({
           <p className=" w-20 mx-8 justify-center items-center h-full flex">
             {moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}
           </p>
-          <TimestampButtons timestamps={timestamps} setVisibleTimestamp={setVisibleTimestamp} visibleTimestamp={visibleTimestamp}/>
+          <TimestampButtons skipToTime={skipToTime} timestamps={timestamps} setVisibleTimestamp={setVisibleTimestamp} visibleTimestamp={visibleTimestamp}/>
           <p className="w-20 mx-8 justify-center items-center h-full flex">
             {moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}
           </p>

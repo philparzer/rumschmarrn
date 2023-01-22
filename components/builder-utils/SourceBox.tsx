@@ -11,14 +11,10 @@ interface Props {
 }   
 
 export default function SourceBox({visibleTimestamp, activeAnnotator, timestamps, annotatorLookup}:Props) {
-    console.log("hhhiu")
-    console.log(visibleTimestamp && timestamps[visibleTimestamp][
-        annotatorLookup[activeAnnotator]
-      ].map((annotation: any, i: number) => console.log(annotation.content)))
     return (
         <div className="bg-kaiserschmarrn-raw dark:bg-rum rounded-[10px] py-10 px-10 text-burnt">
             {visibleTimestamp === undefined ? (
-              <>klick auf einen Timestamp //TODO: change</>
+              <>//TODO: irgendwas hier anzeigen? oder nichts?</>
             ) : (
               <ul className="flex flex-col gap-5">
                 {visibleTimestamp !== undefined ?

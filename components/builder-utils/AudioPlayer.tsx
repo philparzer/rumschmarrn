@@ -41,6 +41,12 @@ const AudioPlayer = ({ audioSrc, episode, annotators, timestamps }: Props) => {
     setProgress(e);
   };
 
+  const skipToTime = (seconds: any) => {
+    audioRef.current.currentTime = seconds;
+    setTrackProgress(audioRef.current.currentTime);
+    setProgress(audioRef.current.currentTime / audioMeta.duration);
+  }
+
   const startTimer = () => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
@@ -95,6 +101,7 @@ const AudioPlayer = ({ audioSrc, episode, annotators, timestamps }: Props) => {
         setProgress={dragProgress}
         annotators={annotators}
         timestamps={timestamps}
+        skipToTime={skipToTime}
       />
       :
       <AudioControlsMobile

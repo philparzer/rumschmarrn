@@ -4,38 +4,36 @@ WHAT:
 */
 
 import { useState } from "react";
+import TimestampButton from "./TimestampButton";
+import { hhmmssToSec } from "../../utils/time";
 
 interface Props {
   timestamps: any;
   setVisibleTimestamp(i: number): void;
   visibleTimestamp: number;
+  skipToTime: any;
 }
 
 export default function TimestampButtons({
   timestamps,
   setVisibleTimestamp,
+  visibleTimestamp,
+  skipToTime
 }: Props) {
-  const [toggledButton, setToggledButton] = useState<number>();
+  
+  
   const updateTimestamp = (i: number) => {
     setVisibleTimestamp(i);
-    setToggledButton(i);
+    skipToTime(hhmmssToSec(timestamps[i].startTime))
   };
+
+  console.log("visibleTimestamp " + visibleTimestamp)
 
   return (
     <div className="grid grid-cols-10 grow scale-y-150 origin-bottom gap-[11px]">
       {timestamps.length > 0 &&
         timestamps.map((timestamp: any, i: number) => (
-          <div className="relative" key={i} onClick={() => updateTimestamp(i)}>
-            <button
-              className={`${
-                i === toggledButton
-                  ? "bg-schmarrn-dark"
-                  : "bg-burnt dark:bg-night dark:hover:bg-schmarrn-dark hover:bg-schmarrn-dark"
-              }  transition-colors h-[${
-                timestamp.barHeight
-              }] w-full absolute bottom-0 rounded-[5px]`}
-            ></button>
-          </div>
+          <TimestampButton key={i} isToggled={i === visibleTimestamp} i={i} barHeight={timestamp.barHeight} updateTimestamp={updateTimestamp}/>
         ))}
     </div>
   );
