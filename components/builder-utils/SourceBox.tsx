@@ -14,7 +14,7 @@ export default function SourceBox({visibleTimestamp, activeAnnotator, timestamps
     return (
         <div className="bg-kaiserschmarrn-raw dark:bg-rum rounded-[10px] py-10 px-10 text-burnt">
             {visibleTimestamp === undefined ? (
-              <>//TODO: irgendwas hier anzeigen? oder nichts?</>
+              <>TODO: irgendwas hier anzeigen? oder nichts?</>
             ) : (
               <ul className="flex flex-col gap-5">
                 {visibleTimestamp !== undefined ?
