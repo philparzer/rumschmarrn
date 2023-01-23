@@ -257,13 +257,13 @@ export default function AudioControls({
           </div>
         </div>
         
-        <div className=" h-full flex">
-          <p className=" w-20 mx-8 justify-center items-center h-full flex">
-            {moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}
+        <div className="h-full flex">
+          <p className="mx-8 justify-center items-center h-full flex">
+            <span className="flex w-16">{moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}</span>
           </p>
           <TimestampButtons skipToTime={skipToTime} timestamps={timestamps} setVisibleTimestamp={setVisibleTimestamp} visibleTimestamp={visibleTimestamp}/>
-          <p className="w-20 justify-center items-center h-full flex">
-            {moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}
+          <p className="mx-8 justify-center items-center h-full flex">
+            <span className="flex w-16 overflow-hidden">{moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}</span>
           </p>
         </div>
       </div>
