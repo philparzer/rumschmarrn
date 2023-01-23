@@ -30,7 +30,7 @@ export default function TimestampButtons({
   console.log("visibleTimestamp " + visibleTimestamp)
 
   return (
-    <div className="grid grid-cols-10 grow scale-y-150 origin-bottom gap-[11px]">
+    <div className="w-full flex scale-y-150 origin-bottom gap-[11px]">
       {timestamps.length > 0 &&
         timestamps.map((timestamp: any, i: number) => (
           <TimestampButton key={i} isToggled={i === visibleTimestamp} i={i} barHeight={timestamp.barHeight} updateTimestamp={updateTimestamp}/>

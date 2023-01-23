@@ -13,7 +13,7 @@ interface Props {
 export default function TimestampButton({ isToggled, updateTimestamp, barHeight, i }:Props) {
     
     return (
-        <div className="relative" onClick={() => updateTimestamp(i)}>
+        <div className="relative w-[18px]" onClick={() => updateTimestamp(i)}>
             <button
               className={`${
                 isToggled === true

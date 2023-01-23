@@ -36,3 +36,4 @@ export default function QuoteBox({timestamps, visibleTimestamp, activeAnnotator,
 
     )
 }
+
