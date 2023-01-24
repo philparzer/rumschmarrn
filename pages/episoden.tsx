@@ -13,6 +13,7 @@ import MainHeadline from '../components/builder/MainHeadline';
 import { useState, useRef, useEffect } from "react";
 import Button from '../components/static/Button';
 import { ColorTheme } from "../shared-ts/enums";
+import { useCookie } from "next-cookie";
 
 /*
   Initialize the Builder SDK with your organization's API Key
@@ -36,8 +37,8 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export default function Page({ page, episodes, setThemeLocalStorage, toggle }: any) {
-    
+export default function Page({ page, episodes, setThemeLocalStorage, toggle, cookie }: any) {
+    const pageCookie = useCookie(cookie)
     const [filteredEpisodes, setFilteredEpisodes] = useState(episodes);
     const inputRef:any = useRef(0)
 
@@ -55,7 +56,7 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle }: a
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie.get("schmarrntyp")}/>
       <div className="h-40"></div>
       <Layout>
         <section className="flex gap-10 items-center mb-10 lg:mb-20 flex-wrap">

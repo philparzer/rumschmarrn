@@ -101,7 +101,7 @@ export default function Page({ page, toggle, setThemeLocalStorage, questions, co
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie.get("schmarrntyp")}/>
       <div className="h-40"></div>
       {/* Render the Builder page */}
       <Layout>
