@@ -96,7 +96,7 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
         {questions.length === currentQuestion ? (
           <SchmarrnReveal schmarrntyp={schmarrntyp} setVisible={setVisible} currentQuestion={currentQuestion} length={questions.length}/>
         ) : (
-      <div className="bg-white px-8 pt-7 rounded-[10px] w-10/12 lg:w-[33vw] flex flex-col justify-between">
+      <div className="bg-white px-8 pt-7 rounded-[10px] w-11/12 lg:w-[33vw] flex flex-col justify-between">
             <div className="flex justify-center">
               <div className="w-[90%] h-2 rounded-full bg-glass relative">
                 <div
@@ -109,7 +109,7 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
             </div>
             <div className="">
               <p className="mt-10 ml-6 mb-4">Stimmst du zu?</p>
-              <div className="flex gap-2 font-poppins text-2xl">
+              <div className="flex gap-2 font-poppins text-xl lg:text-2xl">
                 <div>
                   <p className="w-4">{currentQuestion + 1}.</p>
                 </div>
@@ -117,7 +117,7 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
                   <h2 className="h-[120px]">
                     {questions[currentQuestion].question}
                   </h2>
-                  <div className="mt-2 flex gap-20">
+                  <div className="mt-8 flex gap-10 lg:gap-20">
                     <button
                       onClick={() => yesNoClick(true)}
                       className="flex gap-4 items-center"

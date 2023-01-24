@@ -44,7 +44,7 @@ export default function SchmarrnReveal({
         <div className="absolute overflow-visible h-[120vh] w-full top-0"><Confetti/></div>
       <div
         ref={ref}
-        className="bg-white px-8 pt-7 rounded-[10px] w-[33vw] flex flex-col justify-between relative"
+        className="bg-white px-8 pt-7 rounded-[10px] w-11/12 lg:w-[33vw] flex flex-col justify-between relative"
       >
         <button
           onClick={() => setVisible(false)}
@@ -78,7 +78,7 @@ export default function SchmarrnReveal({
           </div>
         </div>
       </div>
-      <div className="bg-white px-8 py-12 rounded-[10px] max-w-[20vw]">
+      <div className="bg-white px-8 py-12 rounded-[10px] w-10/12 lg:w-auto lg:max-w-[20vw]">
         <h3 className="text-xl font-poppins mb-4">Hurra 🎉</h3>
         <>
           Jetzt können wir einschätzen, welche Kommentare du für dein
