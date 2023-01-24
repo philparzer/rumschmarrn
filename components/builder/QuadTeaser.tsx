@@ -4,6 +4,7 @@ animated showcase square component
 */
 
 import Link from "next/link"
+import useIsIos from "../../hooks/useIsIos";
 
 interface Props {
   title: string;
@@ -14,10 +15,13 @@ import { motion } from "framer-motion";
 
 export default function QuadTeaser({ title, teasers }: Props) {
   //FIXME: ios
+  const isIos = useIsIos();
+  console.log(isIos)
+
   return (
     <section className="w-full flex flex-col items-center justify-center my-20 mb-60 md:mb-40 md:my-40">
       <h2 className="font-inter font-semibold text-4xl relative z-10 mb-10 pointer-events-none dark:text-white">
-        {title}
+        {title} {JSON.stringify(isIos)}
       </h2>
       <div className="relative flex h-[50vh] max-h-[520px] w-full items-center justify-center translate-x-[88%] sm:translate-x-[40%] translate-y-10 lg:translate-x-0">
         <svg
