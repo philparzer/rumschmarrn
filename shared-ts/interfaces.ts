@@ -13,3 +13,10 @@ export interface AnnotatorData {
     annotatorPosition: string;
     annotatorType: "nussAnnotations" | "sahneAnnotations" | "blaubeerAnnotations" | "apfelAnnotations";
   }
+
+
+export interface SchmarrnTestQuestion {
+    question: string;
+    value: number;
+    type: "economic" | "social";
+}

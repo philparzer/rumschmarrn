@@ -7,8 +7,10 @@ import dynamic from 'next/dynamic';
 import Footer from '../components/static/Footer'
 import Nav from '../components/static/Nav';
 import Layout from "../components/static/Layout"
-import { useEffect, useState } from "react"
-import { ColorTheme } from "../shared-ts/enums"
+import { useState } from "react";
+import { ColorTheme } from "../shared-ts/enums";
+import Schmarrntest from '../components/static/Schmarrntest';
+import { useCookie } from "next-cookie"
 
 /*
   Initialize the Builder SDK with your organization's API Key
@@ -29,6 +31,9 @@ export async function getStaticProps({ params }: any) {
   /*FIXME: /spi Warning: data for page "/[...page]" (path "/spi") is 133 kB which exceeds the threshold of 128 kB, this amount of data can reduce performance.
     See more info here: https://nextjs.org/docs/messages/large-page-data*/
 
+  let questions = await builder.getAll("schmarrntest", {})
+  questions = questions.map((question):any => {return {question: question.data?.question, value: question.data?.value, type: question.data?.type }})
+
   const page:any = await builder
     .get("page", {
       userAttributes: {
@@ -39,6 +44,7 @@ export async function getStaticProps({ params }: any) {
 
   return {
     props: {
+      questions: questions || null,
       page: page || null,
     },
     revalidate: 5,
@@ -52,6 +58,7 @@ export async function getStaticPaths() {
     and only return the `data.url` field from the matching pages.
   */
 
+
   const pages = await builder.getAll("page", {
     fields: "data.url", // only request the `data.url` field
     options: { noTargeting: true },
@@ -64,8 +71,11 @@ export async function getStaticPaths() {
   };
 }
 
-export default function Page({ page, toggle, setThemeLocalStorage }: any) {
+export default function Page({ page, toggle, setThemeLocalStorage, questions, cookie }: any) {
   const router = useRouter();
+  const pageCookie = useCookie(cookie);
+  const [schmarrnTestVisible, setSchmarrnTestVisible] = useState(!pageCookie.has("schmarrntyp"))
+
   /*
     This flag indicates if you are viewing the page in the Builder editor.
   */
@@ -98,6 +108,9 @@ export default function Page({ page, toggle, setThemeLocalStorage }: any) {
       <BuilderComponent model="page" content={page} options={{includeRefs: true}}/>
       </Layout>
       <Footer />
+      {schmarrnTestVisible &&
+      <Schmarrntest questions={questions} cookie={pageCookie} setVisible={setSchmarrnTestVisible}/>
+       }
     </>
   );
 }

@@ -39,7 +39,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 11.593 34.6212)"
               stroke="#FFEFB5"
-              stroke-width="5"
+              strokeWidth="5"
             />
             <rect
               x="2.99775"
@@ -48,7 +48,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 2.99775 28.6058)"
               stroke="#F4E4A8"
-              stroke-width="5"
+              strokeWidth="5"
             />
           </svg>
           <p className="lg:absolute lg:top-32 xl:top-36 m-w-[155px] mt-5 text-lg">
@@ -67,7 +67,7 @@ export default function FourSteps({
             height="21"
             transform="rotate(-22.0212 0 53.6226)"
             className="fill-schmarrn-dark dark:fill-rum"
-            fill-opacity="0.6"
+            fillOpacity="0.6"
           />
           <rect
             x="62"
@@ -76,7 +76,7 @@ export default function FourSteps({
             height="21"
             transform="rotate(-31.9855 62 24.8961)"
             className="fill-schmarrn-dark dark:fill-rum"
-            fill-opacity="0.6"
+            fillOpacity="0.6"
           />
         </svg>
       </div>
@@ -97,7 +97,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 11.593 34.6212)"
               stroke="#FFEFB5"
-              stroke-width="5"
+              strokeWidth="5"
             />
             <rect
               x="2.99775"
@@ -106,7 +106,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 2.99775 28.6058)"
               stroke="#F4E4A8"
-              stroke-width="5"
+              strokeWidth="5"
             />
           </svg>
           <p className="lg:absolute lg:top-32 xl:top-36 m-w-[155px] mt-5 text-lg">
@@ -125,7 +125,7 @@ export default function FourSteps({
             height="21"
             transform="rotate(-22.0212 0 53.6226)"
             className="fill-schmarrn-dark dark:fill-rum"
-            fill-opacity="0.6"
+            fillOpacity="0.6"
           />
           <rect
             x="62"
@@ -134,7 +134,7 @@ export default function FourSteps({
             height="21"
             transform="rotate(-31.9855 62 24.8961)"
             className="fill-schmarrn-dark dark:fill-rum"
-            fill-opacity="0.6"
+            fillOpacity="0.6"
           />
         </svg>
       </div>
@@ -155,7 +155,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 11.593 34.6212)"
               stroke="#FFEFB5"
-              stroke-width="5"
+              strokeWidth="5"
             />
             <rect
               x="2.99775"
@@ -164,7 +164,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 2.99775 28.6058)"
               stroke="#F4E4A8"
-              stroke-width="5"
+              strokeWidth="5"
             />
           </svg>
           <p className="lg:absolute lg:top-32 xl:top-36 m-w-[155px] mt-5 text-lg">
@@ -183,7 +183,7 @@ export default function FourSteps({
             height="21"
             transform="rotate(-22.0212 0 53.6226)"
             className="fill-schmarrn-dark dark:fill-rum"
-            fill-opacity="0.6"
+            fillOpacity="0.6"
           />
           <rect
             x="62"
@@ -192,7 +192,7 @@ export default function FourSteps({
             height="21"
             transform="rotate(-31.9855 62 24.8961)"
             className="fill-schmarrn-dark dark:fill-rum"
-            fill-opacity="0.6"
+            fillOpacity="0.6"
           />
         </svg>
       </div>
@@ -213,7 +213,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 11.593 34.6212)"
               stroke="#FFEFB5"
-              stroke-width="5"
+              strokeWidth="5"
             />
             <rect
               x="2.99775"
@@ -222,7 +222,7 @@ export default function FourSteps({
               height="95.8309"
               transform="rotate(-12.9831 2.99775 28.6058)"
               stroke="#F4E4A8"
-              stroke-width="5"
+              strokeWidth="5"
             />
           </svg>
           <p className="lg:absolute lg:top-32 xl:top-36  m-w-[155px] mt-5 text-lg">
