@@ -91,7 +91,8 @@ export default function QuadTeaser({ title, teasers }: Props) {
         <div className="absolute justify-start w-full flex flex-col gap-5">
           {teasers.length > 0 &&
             teasers.map((teaser: any, i: number) => (
-              <Link key={i} href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group flex">
+              <div className="flex">
+              <Link key={i} href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group">
               <div className="font-semibold items-center bg-burnt dark:bg-night transition-colors text-white rounded-[10px] group-hover:bg-rum px-4 py-1 flex gap-2 ">
                 <svg
                 width="12"
@@ -107,7 +108,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
                 <div>{teaser.title}</div>
               </div>
               </Link> 
-              
+              </div>
             ))}
         </div>
       }
