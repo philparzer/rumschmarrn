@@ -7,6 +7,7 @@ import { SchmarrnTestQuestion } from "../../shared-ts/interfaces";
 import { SchmarrnType } from "../../shared-ts/enums";
 import { useState, useRef } from "react";
 import SchmarrnReveal from "./SchmarrnReveal";
+import { supabase } from '../../lib/initSupabase'
 
 interface Props {
   questions: [SchmarrnTestQuestion];
@@ -24,7 +25,15 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [schmarrntyp, setSchmarrnTyp] = useState<any>();
   
-    
+  const addSchmarrn = async (schmarrntyp:string) => {
+      let { data: schmarrn, error } = await supabase
+        .from('schmarrntest')
+        .insert({ schmarrntyp })
+        .single()
+      if (error) console.log(error)
+      else {console.log("success"); console.log(schmarrn)}
+  }
+
   const yesNoClick = (answer: boolean) => {
     let questionType = questions[currentQuestion].type;
     let value = questions[currentQuestion].value;
@@ -36,43 +45,58 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
       answers[questionType] -= value;
     }
 
-    console.log(answers);
 
     if (currentQuestion === questions.length - 1) {
-      console.log("DONE");
 
-      //TODO: look into possible 0
-      if (answers.social >= 0 && answers.economic >= 0) {
-        cookie.set("schmarrntyp", "Sahne");
+      let typ;
+
+      // if any of the values = 0 -> randomize value
+      if (answers.social === 0) {
+        answers.social = Math.random() > 0.5 ? 1 : -1;
+      }
+      if (answers.economic === 0) {
+        answers.economic = Math.random() > 0.5 ? 1 : -1;
+      }
+
+      //proceed to schmarrntyp eval
+      if (answers.social > 0 && answers.economic > 0) {
+        typ = "Sahne";
         setSchmarrnTyp(SchmarrnType.Sahne);
       } //Soc-Right + Econ-Right
-      else if (answers.social <= 0 && answers.economic <= 0) {
-        cookie.set("schmarrntyp", "Nuss");
+
+      else if (answers.social < 0 && answers.economic < 0) {
+        typ = "Nuss";
         setSchmarrnTyp(SchmarrnType.Nuss);
       } //Soc-Left + Econ-Left
-      else if (answers.social >= 0 && answers.economic <= 0) {
-        cookie.set("schmarrntyp", "Apfel");
+
+      else if (answers.social > 0 && answers.economic < 0) {
+        typ = "Apfel";
         setSchmarrnTyp(SchmarrnType.Apfel);
       } //Soc-Right + Econ-Left
-      else if (answers.social <= 0 && answers.economic >= 0) {
-        cookie.set("schmarrntyp", "Blaubeer");
+      
+      else if (answers.social < 0 && answers.economic > 0) {
+        typ = "Blaubeer";
         setSchmarrnTyp(SchmarrnType.Blaubeer);
       } //Soc-Left + Econ-Right
-        
+      
+      console.log(answers)
+      cookie.set("schmarrntyp", typ);
+      if (typ !== undefined) { addSchmarrn(typ);}
     }
 
     setCurrentQuestion(currentQuestion + 1);
+  
     
   };
 
 
   return (
     <div className="w-full h-full fixed top-0 bg-burnt bg-opacity-80 z-50 flex items-center justify-center">
-        <div className="flex justify-center items-center gap-5">
+        <div className="flex justify-center items-center gap-5 flex-wrap">
         {questions.length === currentQuestion ? (
           <SchmarrnReveal schmarrntyp={schmarrntyp} setVisible={setVisible} currentQuestion={currentQuestion} length={questions.length}/>
         ) : (
-      <div className="bg-white px-8 pt-7 rounded-[10px] w-[33vw] flex flex-col justify-between">
+      <div className="bg-white px-8 pt-7 rounded-[10px] w-10/12 lg:w-[33vw] flex flex-col justify-between">
             <div className="flex justify-center">
               <div className="w-[90%] h-2 rounded-full bg-glass relative">
                 <div
@@ -208,8 +232,8 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
       </div>
       )}
       {questions.length !== currentQuestion && (
-      <div className="bg-white px-8 py-12 rounded-[10px] max-w-[20vw]">
-        <h3 className="text-xl font-poppins mb-8">{"Jetzt sag mal ehrlich"}</h3>
+      <div className="bg-white px-8 py-8 lg:py-12 rounded-[10px] w-10/12 lg:w-auto lg:max-w-[20vw]">
+        <h3 className="hidden lg:block text-xl font-poppins mb-8">{"Jetzt sag mal ehrlich"}</h3>
         <p className="mb-4">{questions.length} Fragen. Ja oder nein.</p>
         <p>Was kommt raus?</p>
         <p className="font-poppins">Dein Schmarrntyp</p> 

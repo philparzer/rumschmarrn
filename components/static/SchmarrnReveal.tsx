@@ -79,7 +79,7 @@ export default function SchmarrnReveal({
         </div>
       </div>
       <div className="bg-white px-8 py-12 rounded-[10px] max-w-[20vw]">
-        <h3 className="text-xl font-poppins mb-8">Hurra 🎉</h3>
+        <h3 className="text-xl font-poppins mb-4">Hurra 🎉</h3>
         <>
           Jetzt können wir einschätzen, welche Kommentare du für dein
           Hörerlebnis bevorzugst.

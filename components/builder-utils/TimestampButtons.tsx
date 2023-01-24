@@ -5,7 +5,7 @@ WHAT:
 
 import { useState } from "react";
 import TimestampButton from "./TimestampButton";
-import { hhmmssToSec } from "../../utils/time";
+import { hhmmssToSec } from "../../lib/utils/time";
 
 interface Props {
   timestamps: any;

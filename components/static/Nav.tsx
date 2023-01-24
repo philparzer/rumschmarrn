@@ -8,9 +8,10 @@ import ThemeToggle from "./ThemeToggle";
 interface Props {
   toggle: ColorTheme;
   setThemeLocalStorage: (theme:ColorTheme) => void;
+  schmarrntyp: undefined | "Nuss" | "Sahne" | "Apfel" | "Blaubeer"
 }
 
-export default function Nav({toggle, setThemeLocalStorage}: Props) {
+export default function Nav({toggle, setThemeLocalStorage, schmarrntyp}: Props) {
   const [navDrawerVisible, setNavDrawerVisible] = useState(false);
   const showNavDrawer = () => {
     setNavDrawerVisible(!navDrawerVisible);
@@ -28,7 +29,7 @@ export default function Nav({toggle, setThemeLocalStorage}: Props) {
   return (
     <div>
       <nav className="h-14 px-5 md:px-20 flex items-center justify-between text-inter fixed top-0 w-full mb-20 bg-white z-40 text-burnt dark:text-white dark:bg-burnt">
-        <Logo pathToHome={"/"} />
+        <Logo pathToHome={"/"} schmarrntyp={schmarrntyp}/>
         <div className="hidden md:flex gap-14 items-center">
           <Link className="transition-all hover:tracking-wide" href="/episoden">
             Episoden
@@ -53,7 +54,7 @@ export default function Nav({toggle, setThemeLocalStorage}: Props) {
         className="fixed top-0 right-0 w-full backdrop-blur-md h-[100vh] bg-white dark:bg-burnt dark:text-white z-[50] flex flex-col">
           <div className="h-full flex flex-col">
             <div className="w-full flex flex-row justify-between px-5 md:px-20 h-14 items-center">
-              <Logo pathToHome={"/"} />
+              <Logo pathToHome={"/"} schmarrntyp={schmarrntyp}/>
               <button className="px-2" onClick={() => hideNavDrawer()}>
                 <svg xmlns="http://www.w3.org/2000/svg"  height="24" width="24"><path className="fill-burnt dark:fill-white stroke-burnt dark:stroke-white" d="m12 13.4-4.9 4.9q-.275.275-.7.275-.425 0-.7-.275-.275-.275-.275-.7 0-.425.275-.7l4.9-4.9-4.9-4.9q-.275-.275-.275-.7 0-.425.275-.7.275-.275.7-.275.425 0 .7.275l4.9 4.9 4.9-4.9q.275-.275.7-.275.425 0 .7.275.275.275.275.7 0 .425-.275.7L13.4 12l4.9 4.9q.275.275.275.7 0 .425-.275.7-.275.275-.7.275-.425 0-.7-.275Z"/></svg>
               </button>

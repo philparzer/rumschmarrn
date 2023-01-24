@@ -22,7 +22,7 @@ import { AnnotatorData } from "../../shared-ts/interfaces";
 import { stringify } from "querystring";
 import AnnotatorBox from "./AnnotatorBox";
 import { time } from "console";
-import { hhmmssToSec } from "../../utils/time";
+import { hhmmssToSec } from "../../lib/utils/time";
 
 interface Props {
   isPlaying: boolean;
@@ -259,11 +259,11 @@ export default function AudioControls({
         
         <div className="h-full flex">
           <p className="mx-8 justify-center items-center h-full flex">
-            <span className="flex w-16">{moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}</span>
+            <span className="flex w-18">{moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}</span>
           </p>
           <TimestampButtons skipToTime={skipToTime} timestamps={timestamps} setVisibleTimestamp={setVisibleTimestamp} visibleTimestamp={visibleTimestamp}/>
           <p className="mx-8 justify-center items-center h-full flex">
-            <span className="flex w-16 overflow-hidden">{moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}</span>
+            <span className="flex w-18 overflow-hidden">{moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}</span>
           </p>
         </div>
       </div>
