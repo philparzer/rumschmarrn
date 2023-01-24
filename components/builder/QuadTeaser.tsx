@@ -16,12 +16,11 @@ import { motion } from "framer-motion";
 export default function QuadTeaser({ title, teasers }: Props) {
   //FIXME: ios
   const isIos = useIsIos();
-  console.log(isIos)
 
   return (
     <section className="w-full flex flex-col items-center justify-center my-20 mb-60 md:mb-40 md:my-40">
       <h2 className="font-inter font-semibold text-4xl relative z-10 mb-10 pointer-events-none dark:text-white">
-        {title} {JSON.stringify(isIos)}
+        {title}
       </h2>
       <div className="relative flex h-[50vh] max-h-[520px] w-full items-center justify-center translate-x-[88%] sm:translate-x-[40%] translate-y-10 lg:translate-x-0">
         <svg
@@ -53,7 +52,7 @@ export default function QuadTeaser({ title, teasers }: Props) {
               strokeLinecap="round"
             />
           </svg>
-          {teasers.length > 0 &&
+          {teasers.length > 0 && isIos === false &&
             teasers.map((teaser: any, i: number) => (
               <Link key={i} href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group ">
               <motion.div
@@ -81,10 +80,37 @@ export default function QuadTeaser({ title, teasers }: Props) {
               </svg>
                 <div>{teaser.title}</div>
               </motion.div>
-              </Link>
+              </Link> 
+              
+            ))}
+          
+        </div>
+        
+      </div>
+      {isIos === true &&
+        <div className="absolute justify-start w-full flex flex-col gap-5">
+          {teasers.length > 0 &&
+            teasers.map((teaser: any, i: number) => (
+              <Link key={i} href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group flex">
+              <div className="font-semibold items-center bg-burnt dark:bg-night transition-colors text-white rounded-[10px] group-hover:bg-rum px-4 py-1 flex gap-2 ">
+                <svg
+                width="12"
+                height="12"
+                viewBox="0 0 28 28"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M26.5 13.134C27.1667 13.5189 27.1667 14.4811 26.5 14.866L8.5 25.2583C7.83333 25.6432 7 25.1621 7 24.3923L7 3.60769C7 2.83789 7.83334 2.35677 8.5 2.74167L26.5 13.134Z"
+                  className="fill-white"
+                />
+              </svg>
+                <div>{teaser.title}</div>
+              </div>
+              </Link> 
+              
             ))}
         </div>
-      </div>
+      }
     </section>
   );
 }
