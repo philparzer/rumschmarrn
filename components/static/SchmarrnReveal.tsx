@@ -12,6 +12,8 @@ import Nuss from "../svgs/Nuss";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import Confetti from 'react-confetti'
 
+
+
 interface Props {
   schmarrntyp: SchmarrnType;
   setVisible: (toggle: boolean) => void;

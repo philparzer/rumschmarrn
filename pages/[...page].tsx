@@ -73,15 +73,21 @@ export async function getStaticPaths() {
   };
 }
 
+let isFirstLoad = true;
+
 export default function Page({ page, toggle, setThemeLocalStorage, questions, cookie }: any) {
   const router = useRouter();
   const [pageCookie, setPageCookie] = useState<any>();
   const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<boolean>(true)
   
   useEffect(() => {
-    setPageCookie(useCookie(cookie))
+    setPageCookie(getCookie("schmarrntyp"))
     setSchmarrnTestVisible(getCookie("schmarrntyp") === undefined ? true : false)}, []
   )
+
+    const updateCookie = () => {
+      setPageCookie(getCookie("schmarrntyp"))
+    }
 
   /*
     This flag indicates if you are viewing the page in the Builder editor.
@@ -108,15 +114,15 @@ export default function Page({ page, toggle, setThemeLocalStorage, questions, co
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie.get("schmarrntyp") : undefined}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie : undefined}/>
       <div className="h-40"></div>
       {/* Render the Builder page */}
       <Layout>
-      <BuilderComponent model="page" content={page} options={{includeRefs: true}}/>
+      <BuilderComponent model="page" content={page} options={{includeRefs: true}} />
       </Layout>
       <Footer />
       {schmarrnTestVisible &&
-      <Schmarrntest questions={questions} cookie={pageCookie} setVisible={setSchmarrnTestVisible}/>
+      <Schmarrntest questions={questions} updateCookie={updateCookie} setVisible={setSchmarrnTestVisible}/>
        }
     </>
   );

@@ -14,7 +14,6 @@ interface Props {
 }
 
 export default function Player({ audioSrc, episode, annotators, timestamps }: Props) {
-  console.log(episode);
   return (
         <>
           <EpisodeTitle

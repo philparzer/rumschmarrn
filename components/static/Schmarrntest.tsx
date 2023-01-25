@@ -8,11 +8,12 @@ import { SchmarrnType } from "../../shared-ts/enums";
 import { useState, useRef } from "react";
 import SchmarrnReveal from "./SchmarrnReveal";
 import { supabase } from '../../lib/initSupabase'
+import { setCookie } from "cookies-next";
 
 interface Props {
   questions: [SchmarrnTestQuestion];
-  cookie: any;
   setVisible: (toggle: boolean) => void;
+  updateCookie: () => void
 }
 
 let answers = {
@@ -21,7 +22,7 @@ let answers = {
   economic: 0,
 };
 
-export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
+export default function Schmarrntest({ questions, setVisible, updateCookie }: Props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [schmarrntyp, setSchmarrnTyp] = useState<any>();
   
@@ -80,7 +81,8 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
       } //Soc-Left + Econ-Right
       
       console.log(answers)
-      cookie.set("schmarrntyp", typ);
+      setCookie("schmarrntyp", typ)
+      updateCookie()
       if (typ !== undefined) { addSchmarrn(typ);}
     }
 

@@ -48,9 +48,13 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle, coo
     const [pageCookie, setPageCookie] = useState<any>();
 
     useEffect(() => {
-      setPageCookie(useCookie(cookie))
+      setPageCookie(getCookie("schmarrntyp"))
       setSchmarrnTestVisible(getCookie("schmarrntyp") === undefined ? true : false)}, []
     )
+
+    const updateCookie = () => {
+      setPageCookie(getCookie("schmarrntyp"))
+    }
     
     const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<any>(true)
 
@@ -66,7 +70,7 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle, coo
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie.get("schmarrntyp") : undefined}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie : undefined}/>
       <div className="h-40"></div>
       <Layout>
         <section className="flex gap-10 items-center mb-10 lg:mb-20 flex-wrap">
@@ -134,7 +138,7 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle, coo
       </Layout>
       <Footer />
       {schmarrnTestVisible &&
-      <Schmarrntest questions={questions} cookie={pageCookie} setVisible={setSchmarrnTestVisible}/>
+      <Schmarrntest questions={questions} updateCookie={updateCookie} setVisible={setSchmarrnTestVisible}/>
        }
     </>
   );
