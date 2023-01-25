@@ -5,12 +5,12 @@ import Footer from "../components/static/Footer";
 import Layout from "../components/static/Layout";
 import { ColorTheme } from "../shared-ts/enums";
 import { useEffect, useState } from "react";
-import { useCookie } from "next-cookie"
+import { getCookie } from "cookies-next";
 
 export default function Home({ home, toggle, setThemeLocalStorage, cookie }: any) {
 
   const [pageCookie, setPageCookie] = useState<any>()
-  useEffect(() => setPageCookie(useCookie(cookie)), [])
+  useEffect(() => setPageCookie(getCookie("schmarrntyp")), [])
 
   return (
     <div>
@@ -20,7 +20,7 @@ export default function Home({ home, toggle, setThemeLocalStorage, cookie }: any
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie.get("schmarrntyp") : undefined}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie : undefined}/>
       <div className="h-[20vh]"></div>
       <Layout>
         <BuilderComponent
