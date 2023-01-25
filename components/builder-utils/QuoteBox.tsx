@@ -16,7 +16,7 @@ export default function QuoteBox({timestamps, visibleTimestamp, activeAnnotator,
     return (
         <div className="w-[68%] h-80 bg-schmarrn-light rounded-[10px] text-burnt px-10 py-10">
           {visibleTimestamp === undefined ? (
-            <div className="w-full h-full flex items-center justify-center"><SkypeAnim /></div>
+            <div className="w-full h-full flex flex-wrap items-center justify-center"><SkypeAnim color={"rum"} darkColor={"rum"}/></div>
           ) : (
             <div>
               <h3 className="mb-10 text-lg font-poppins">

@@ -3,6 +3,8 @@ WHAT:
 
 */
 
+import SkypeAnim from "../static/SkypeAnim";
+
 interface Props {
    visibleTimestamp: any;
    activeAnnotator: any;
@@ -14,7 +16,7 @@ export default function SourceBox({visibleTimestamp, activeAnnotator, timestamps
     return (
         <div className="bg-kaiserschmarrn-raw dark:bg-rum rounded-[10px] py-10 px-10 text-burnt">
             {visibleTimestamp === undefined ? (
-              <>TODO: irgendwas hier anzeigen? oder nichts?</>
+              <><div className="w-full h-full flex flex-wrap items-center justify-center"><SkypeAnim color={"rum"} darkColor={"burnt"}/></div></>
             ) : (
               <ul className="flex flex-col gap-5">
                 {visibleTimestamp !== undefined ?
