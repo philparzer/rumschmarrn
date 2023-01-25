@@ -14,9 +14,6 @@ interface Props {
 import { motion } from "framer-motion";
 
 export default function QuadTeaser({ title, teasers }: Props) {
-  //FIXME: ios
-
-
 
   const isIos = useIsIos();
 
@@ -94,8 +91,8 @@ export default function QuadTeaser({ title, teasers }: Props) {
         <div className="absolute justify-start w-full flex flex-col gap-5">
           {teasers.length > 0 &&
             teasers.map((teaser: any, i: number) => (
-              <div className="flex">
-              <Link key={i} href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group">
+              <div key={i} className="flex">
+              <Link  href={teaser.link.value !== undefined ? teaser.link.value.data.url : "#"} className="group">
               <div className="font-semibold items-center bg-burnt dark:bg-night transition-colors text-white rounded-[10px] group-hover:bg-rum px-4 py-1 flex gap-2 ">
                 <svg
                 width="12"
