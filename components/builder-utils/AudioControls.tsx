@@ -23,6 +23,7 @@ import { stringify } from "querystring";
 import AnnotatorBox from "./AnnotatorBox";
 import { time } from "console";
 import { hhmmssToSec } from "../../lib/utils/time";
+import { getCookie } from 'cookies-next';
 
 interface Props {
   isPlaying: boolean;
@@ -67,9 +68,18 @@ export default function AudioControls({
   const [visibleTimestamp, setVisibleTimestamp] = useState<any>();
   const [activeAnnotator, setActiveAnnotator] = useState<SchmarrnType>(
     SchmarrnType.Blaubeer
-  ); //TODO: init via local storage
+  );
   const [activeAnnotatorData, setActiveAnnotatorData] = useState<AnnotatorData>()
-  
+
+  useEffect(() => {
+    let pageCookie = getCookie("schmarrntyp");
+    if (pageCookie) {
+      if (pageCookie === "Apfel") {setActiveAnnotator(SchmarrnType.Apfel)}
+      if (pageCookie === "Sahne") {setActiveAnnotator(SchmarrnType.Sahne)}
+      if (pageCookie === "Nuss") {setActiveAnnotator(SchmarrnType.Nuss)}
+      if (pageCookie === "Blaubeer") {setActiveAnnotator(SchmarrnType.Blaubeer)}
+    }
+  }, [])
 
   useEffect(() => {
     annotators.forEach((annotator) => {

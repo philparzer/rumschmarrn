@@ -14,6 +14,8 @@ import { useState, useRef, useEffect } from "react";
 import Button from '../components/static/Button';
 import { ColorTheme } from "../shared-ts/enums";
 import { useCookie } from "next-cookie";
+import Schmarrntest from "../components/static/Schmarrntest"
+import { getCookie } from "cookies-next"
 
 /*
   Initialize the Builder SDK with your organization's API Key
@@ -25,31 +27,37 @@ if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
 
 
 export async function getStaticProps({ params }: any) {
-  
+  let questions = await builder.getAll("schmarrntest", {})
+  questions = questions.map((question):any => {return {question: question.data?.question, value: question.data?.value, type: question.data?.type }})
+
   const episodes:any = await builder.getAll("episodes", {});
   let formattedEpisodes = episodes.map((episode: any, i:number):EpisodeData => {return {link: episode.data.episode.value.data.url, title: episode.data.title, location: episode.data.location, city: episode.data.city, date: episode.data.date, indexNumber:episode.data.indexNumber}}) // TODO: sort before
   let sortedEpisodes = formattedEpisodes.sort((a:EpisodeData, b:EpisodeData) => new Date(b.date).getTime() - new Date(a.date).getTime())
   return {
     props: {
+      questions: questions || null,
       episodes: sortedEpisodes || null,
     },
     revalidate: 5,
   };
 }
 
-export default function Page({ page, episodes, setThemeLocalStorage, toggle, cookie }: any) {
+export default function Page({ page, episodes, setThemeLocalStorage, toggle, cookie, questions }: any) {
     const [filteredEpisodes, setFilteredEpisodes] = useState(episodes);
     const inputRef:any = useRef(0)
+    const [pageCookie, setPageCookie] = useState<any>();
 
-    const [pageCookie, setPageCookie] = useState<any>()
-    useEffect(() => setPageCookie(useCookie(cookie)), [])
+    useEffect(() => {
+      setPageCookie(useCookie(cookie))
+      setSchmarrnTestVisible(getCookie("schmarrntyp") === undefined ? true : false)}, []
+    )
+    
+    const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<any>(true)
 
     const search = (e:any) => {
-        
         let tempFilter = episodes.filter((episode:EpisodeData) => e === "" || episode.title.toLowerCase().includes(e) || episode.location.toLowerCase().includes(e)); //filter for hits on title or location
         setFilteredEpisodes(tempFilter)
     }
-
 
   return (
     <>
@@ -125,6 +133,9 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle, coo
       <EpisodeList episodes={filteredEpisodes}/>
       </Layout>
       <Footer />
+      {schmarrnTestVisible &&
+      <Schmarrntest questions={questions} cookie={pageCookie} setVisible={setSchmarrnTestVisible}/>
+       }
     </>
   );
 }

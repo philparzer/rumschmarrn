@@ -7,10 +7,12 @@ import dynamic from 'next/dynamic';
 import Footer from '../components/static/Footer'
 import Nav from '../components/static/Nav';
 import Layout from "../components/static/Layout"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ColorTheme } from "../shared-ts/enums";
 import Schmarrntest from '../components/static/Schmarrntest';
 import { useCookie } from "next-cookie"
+import { getCookie } from "cookies-next"
+
 
 /*
   Initialize the Builder SDK with your organization's API Key
@@ -73,8 +75,13 @@ export async function getStaticPaths() {
 
 export default function Page({ page, toggle, setThemeLocalStorage, questions, cookie }: any) {
   const router = useRouter();
-  const pageCookie = useCookie(cookie);
-  const [schmarrnTestVisible, setSchmarrnTestVisible] = useState(!pageCookie.has("schmarrntyp"))
+  const [pageCookie, setPageCookie] = useState<any>();
+  const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<boolean>(true)
+  
+  useEffect(() => {
+    setPageCookie(useCookie(cookie))
+    setSchmarrnTestVisible(getCookie("schmarrntyp") === undefined ? true : false)}, []
+  )
 
   /*
     This flag indicates if you are viewing the page in the Builder editor.
@@ -101,7 +108,7 @@ export default function Page({ page, toggle, setThemeLocalStorage, questions, co
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie.get("schmarrntyp")}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie.get("schmarrntyp") : undefined}/>
       <div className="h-40"></div>
       {/* Render the Builder page */}
       <Layout>
