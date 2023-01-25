@@ -38,9 +38,11 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function Page({ page, episodes, setThemeLocalStorage, toggle, cookie }: any) {
-    const pageCookie = useCookie(cookie)
     const [filteredEpisodes, setFilteredEpisodes] = useState(episodes);
     const inputRef:any = useRef(0)
+
+    const [pageCookie, setPageCookie] = useState<any>()
+    useEffect(() => setPageCookie(useCookie(cookie)), [])
 
     const search = (e:any) => {
         
@@ -56,7 +58,7 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle, coo
         <title>{page?.data.title}</title>
         <meta name="description" content={page?.data.descripton} />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie.get("schmarrntyp")}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie.get("schmarrntyp") : undefined}/>
       <div className="h-40"></div>
       <Layout>
         <section className="flex gap-10 items-center mb-10 lg:mb-20 flex-wrap">

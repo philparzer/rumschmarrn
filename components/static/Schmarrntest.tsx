@@ -91,7 +91,7 @@ export default function Schmarrntest({ questions, cookie, setVisible }: Props) {
 
 
   return (
-    <div className="w-full h-full fixed top-0 bg-burnt bg-opacity-80 z-50 flex items-center justify-center">
+    <div className="w-full h-full fixed top-0 bg-burnt bg-opacity-80 z-50 flex items-center justify-center dark:text-burnt">
         <div className="flex justify-center items-center gap-5 flex-wrap">
         {questions.length === currentQuestion ? (
           <SchmarrnReveal schmarrntyp={schmarrntyp} setVisible={setVisible} currentQuestion={currentQuestion} length={questions.length}/>

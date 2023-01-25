@@ -9,7 +9,8 @@ import { useCookie } from "next-cookie"
 
 export default function Home({ home, toggle, setThemeLocalStorage, cookie }: any) {
 
-  const pageCookie = useCookie(cookie)
+  const [pageCookie, setPageCookie] = useState<any>()
+  useEffect(() => setPageCookie(useCookie(cookie)), [])
 
   return (
     <div>
@@ -19,7 +20,7 @@ export default function Home({ home, toggle, setThemeLocalStorage, cookie }: any
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie.get("schmarrntyp")}/>
+      <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie.get("schmarrntyp") : undefined}/>
       <div className="h-[20vh]"></div>
       <Layout>
         <BuilderComponent

@@ -15,6 +15,9 @@ import { motion } from "framer-motion";
 
 export default function QuadTeaser({ title, teasers }: Props) {
   //FIXME: ios
+
+
+
   const isIos = useIsIos();
 
   return (
