@@ -11,11 +11,22 @@ import {
 } from "react-circular-input";
 import moment from "moment";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { SchmarrnType } from "../../shared-ts/enums";
+import SchmarrnButton from "../static/SchmarrnButton";
+import SourceBox from "../builder-utils/SourceBox";
+import QuoteBox from "./QuoteBox";
+import TimestampButtons from "./TimestampButtons";
+import Image from "next/image"
+import { AnnotatorData } from "../../shared-ts/interfaces";
+import { stringify } from "querystring";
+import AnnotatorBox from "./AnnotatorBox";
+import { time } from "console";
+import { hhmmssToSec } from "../../lib/utils/time";
+import { getCookie } from 'cookies-next';
 import BottomSheet from "./BottomSheet";
-import { useState } from "react"
 
 interface Props {
-  episode: any;
   isPlaying: boolean;
   onPlayPauseClick: any;
   audioMeta: any;
@@ -23,10 +34,20 @@ interface Props {
   volume: any;
   progress: any;
   setProgress: any;
+  annotators: any[];
+  timestamps: any[];
+  skipToTime: any;
+  episode: any;
 }
 
+const annotatorLookup:any = [
+  "nussAnnotations",
+  "sahneAnnotations",
+  "blaubeerAnnotations",
+  "apfelAnnotations",
+];
+
 export default function AudioControlsMobile({
-  episode,
   isPlaying,
   onPlayPauseClick,
   audioMeta,
@@ -34,7 +55,76 @@ export default function AudioControlsMobile({
   volume,
   progress,
   setProgress,
+  annotators,
+  timestamps,
+  skipToTime,
+  episode
 }: Props) {
+  const onDrag = () => {
+    // onPlayPauseClick(false); //TODO: is this behavior ok?
+  };
+
+  const onUp = () => {
+    // onPlayPauseClick(true); //TODO: is this behavior ok?
+  };
+
+  const [visibleTimestamp, setVisibleTimestamp] = useState<any>();
+  const [activeAnnotator, setActiveAnnotator] = useState<SchmarrnType>(
+    SchmarrnType.Blaubeer
+  );
+  const [activeAnnotatorData, setActiveAnnotatorData] = useState<AnnotatorData>()
+
+  useEffect(() => {
+    let pageCookie = getCookie("schmarrntyp");
+    if (pageCookie) {
+      if (pageCookie === "Apfel") {setActiveAnnotator(SchmarrnType.Apfel)}
+      if (pageCookie === "Sahne") {setActiveAnnotator(SchmarrnType.Sahne)}
+      if (pageCookie === "Nuss") {setActiveAnnotator(SchmarrnType.Nuss)}
+      if (pageCookie === "Blaubeer") {setActiveAnnotator(SchmarrnType.Blaubeer)}
+    }
+  }, [])
+
+  useEffect(() => {
+    annotators.forEach((annotator) => {
+      if (annotator.annotatorType === annotatorLookup[activeAnnotator]) {
+        return  setActiveAnnotatorData(annotator);
+      }
+    })
+  }, [activeAnnotator])
+
+  console.log(timestamps)
+
+  useEffect(() => {
+
+    let foundTimeStamp = false;
+
+    timestamps.forEach((timestamp:any, i:number) => {
+      let timeStampStartTime = hhmmssToSec(timestamp.startTime);
+      let timeStampEndTime = hhmmssToSec(timestamp.endTime);
+
+      console.log("-------------")
+      console.log("TRACK PROGRESS " + Math.floor(audioMeta.trackProgress))
+      console.log("-------------")
+      console.log(i)
+      console.log("starting time: " + timeStampStartTime)
+      console.log("end time: " + timeStampEndTime)
+      
+      console.log("is visible: " + (Math.floor(audioMeta.trackProgress) >= timeStampStartTime && timeStampEndTime >= Math.floor(audioMeta.trackProgress)))
+
+      if (Math.floor(audioMeta.trackProgress) >= timeStampStartTime && timeStampEndTime >= Math.floor(audioMeta.trackProgress)) {
+        console.log("changing to " + i)
+        foundTimeStamp = true;
+        setVisibleTimestamp(i)
+      }
+      
+    })
+
+    if (foundTimeStamp === false) {
+      setVisibleTimestamp(undefined)
+    }
+
+  }, [audioMeta])
+
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -52,166 +142,61 @@ export default function AudioControlsMobile({
   return (
     <>
       <div className="z-10 fixed bottom-0 left-0 flex w-[100vw]">
-        <BottomSheet onOpen={onOpen} isOpen={isOpen} onClose={onClose} episode={episode}/>
+        <BottomSheet activeAnnotator={activeAnnotator} setActiveAnnotator={setActiveAnnotator} activeAnnotatorData={activeAnnotator} audioMeta={audioMeta} progress={progress} setProgress={setProgress} onOpen={onOpen} isOpen={isOpen} onClose={onClose} episode={episode} setVolume={setVolume} isPlaying={isPlaying} volume={volume} onPlayPauseClick={onPlayPauseClick}/>
+      </div>
+      <div className="flex items-center h-[100px] mb-[35px]">
+        <div className="h-full flex justify-center w-full">
+          <div className="flex">
+            <TimestampButtons skipToTime={skipToTime} timestamps={timestamps} setVisibleTimestamp={setVisibleTimestamp} visibleTimestamp={visibleTimestamp}/>
+          </div>
+        </div>
       </div>
 
-      <div className="flex items-center h-[100px] max-w-[80%] mb-[35px]">
-        <div className="w-14 flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center">
-            <div>
-              <input
-                className="w-14 mb-5 -rotate-90 appearance-none accent-burnt h-2 bg-glass rounded-lg"
-                title="volume"
-                type="range"
-                value={volume}
-                step=".02"
-                min="0"
-                max={1}
-                onChange={(e) => setVolume(e.target.value)}
-              />
-            </div>
-            <div className="translate-y-[19px] flex gap-0.5 items-end">
-              <motion.div
-                animate={
-                  isPlaying
-                    ? { scaleY: [1 * volume, 1.4 * volume] }
-                    : { scaleY: 1 * volume }
-                }
-                transition={
-                  isPlaying
-                    ? {
-                        repeat: Infinity,
-                        duration: 0.5,
-                        repeatType: "mirror",
-                        ease: "easeInOut",
-                      }
-                    : { repeat: 0 }
-                }
-                className="w-1.5 h-2 bg-burnt origin-bottom rounded-sm"
-              ></motion.div>
-              <motion.div
-                animate={
-                  isPlaying
-                    ? { scaleY: [1 * volume, 1.4 * volume] }
-                    : { scaleY: 1 * volume }
-                }
-                transition={
-                  isPlaying
-                    ? {
-                        repeat: Infinity,
-                        duration: 0.5,
-                        delay: 0.6,
-                        repeatType: "mirror",
-                        ease: "easeInOut",
-                      }
-                    : { repeat: 0 }
-                }
-                className="w-1.5 h-4 bg-burnt origin-bottom rounded-sm"
-              ></motion.div>
-              <motion.div
-                animate={
-                  isPlaying
-                    ? { scaleY: [1 * volume, 1.4 * volume] }
-                    : { scaleY: 1 * volume }
-                }
-                transition={
-                  isPlaying
-                    ? {
-                        repeat: Infinity,
-                        duration: 0.5,
-                        delay: 0.3,
-                        repeatType: "mirror",
-                        ease: "easeInOut",
-                      }
-                    : { repeat: 0 }
-                }
-                className="w-1.5 h-3 bg-burnt origin-bottom rounded-sm"
-              ></motion.div>
-            </div>
-          </div>
+      <div className="flex flex-col gap-[10px]">
+        <div className="w-full">
+          <QuoteBox isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
         </div>
-        <div className="relative w-[68px]">
-          <CircularInput
-            radius={34}
-            value={progress}
-            onChange={(e) => setProgress(e)}
-          >
-            <CircularTrack strokeWidth={8} stroke="rgba(217, 217, 217, 62)" />
-            <CircularProgress strokeWidth={8} stroke={"#DEB292"} />
-            <CircularThumb
-              r={9}
-              fill={"#D78E59"}
-            />
-          </CircularInput>
-          <div className="absolute w-full flex top-0 h-full z-10 items-center justify-center pointer-events-none">
-            {isPlaying === false ? (
-              <button
-                onClick={() => onPlayPauseClick(true)}
-                className="pointer-events-auto"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M26.5 13.134C27.1667 13.5189 27.1667 14.4811 26.5 14.866L8.5 25.2583C7.83333 25.6432 7 25.1621 7 24.3923L7 3.60769C7 2.83789 7.83334 2.35677 8.5 2.74167L26.5 13.134Z"
-                    fill="#404040"
-                  />
-                </svg>
-              </button>
-            ) : (
-              <button
-                onClick={() => onPlayPauseClick(false)}
-                className="pointer-events-auto focus:border-0"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 23"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect width="7" height="23" fill="#404040" />
-                  <rect x="13" width="7" height="23" fill="#404040" />
-                </svg>
-              </button>
-            )}
-          </div>
-        </div>
-        <div className=" h-full flex grow">
-          <p className=" w-20 mx-8 justify-center items-center h-full flex">
-            {moment.utc(audioMeta.trackProgress * 1000).format("HH:mm:ss")}
-          </p>
-          {/*TODO: refactor into components and give time frame as prop */}
-          <div className="grid grid-cols-10 grow scale-y-150 origin-bottom gap-[11px]">
-            <div className="relative">
-              <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
-            </div>
-            <div className="relative">
-              <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[90%] w-full absolute bottom-0 rounded-[5px]"></button>
-            </div>
-            <div className="relative ">
-              <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[60%] w-full absolute bottom-0 rounded-[5px]"></button>
-            </div>
-            <div className="relative ">
-              <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[30%] w-full absolute bottom-0 rounded-[5px]"></button>
-            </div>
-            <div className="relative ">
-              <button className="bg-burnt hover:bg-schmarrn-dark transition-colors h-[50%] w-full absolute bottom-0 rounded-[5px]"></button>
-            </div>
-          </div>
-          <p className="w-20 mx-8 justify-center items-center h-full flex">
-            {moment.utc(audioMeta.duration * 1000).format("HH:mm:ss")}
-          </p>
+        <div className="w-full">
+          <SourceBox isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
         </div>
       </div>
-      <div className="flex ml-10 gap-[3%] ">
-        <div className="w-[68%] h-80 bg-schmarrn-light rounded-[10px]"></div>
-        <div className="grow h-40 bg-kaiserschmarrn-raw rounded-[10px]"></div>
-      </div>
+      <div className="flex-col items-center relative  w-full lg:w-[20%] my-10 flex">
+          <div className="w-[70px] h-[70px] relative ">
+            <Image
+              src={activeAnnotatorData ? activeAnnotatorData.annotatorPic : "/"}
+              fill
+              className="object-cover  rounded-full"
+              alt="Bild von Annotator"
+              sizes="(max-width: 768px) 70px,
+          (max-width: 1200px) 70px,
+          70px"
+            ></Image>
+            <div className="absolute bottom-0 left-12">
+              {Object.keys(SchmarrnType).map((schmarrnType: any, i) => {
+                //check for active SchmarrnType
+                if (!isNaN(Number(schmarrnType))) {
+                  if (parseInt(schmarrnType) === activeAnnotator) {
+                    return (
+                      <SchmarrnButton
+                        key={i}
+                        handler={setActiveAnnotator}
+                        type={parseInt(schmarrnType)}
+                        isPersonalSchmarrnType={false}
+                      />
+                    );
+                  }
+                }
+              })}
+            </div>
+          </div>
+
+          <div className="my-2 flex flex-col items-center text-center">
+            <p className="font-poppins text-sm dark:text-white ">
+              {activeAnnotatorData?.annotatorName}
+            </p>
+            <p className="text-xs">{activeAnnotatorData?.annotatorPosition}</p>
+          </div>
+        </div>
     </>
   );
 }

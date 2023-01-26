@@ -3,18 +3,49 @@ WHAT:
 
 */
 
-import { motion } from "framer-motion";
+import { motion, useAnimationControls} from "framer-motion";
+import { useEffect } from "react"
 
 interface Props {
     color: string;
     darkColor: string;
+    isPlaying: boolean;
 }
 
-export default function SkypeAnim({color, darkColor}: Props) {
+export default function SkypeAnim({color, darkColor, isPlaying}: Props) {
     //TODO: play / pause w controls
+
+    const firstControls = useAnimationControls()
+    const secondControls = useAnimationControls()
+    const thirdControls = useAnimationControls()
+    const fourthControls = useAnimationControls()
+
+    // useEffect(() => {
+    //   firstControls.start({scale: [1, 1.5, 1], transition: {repeat: Infinity, repeatType: "mirror", duration: 1.5}})
+    //   secondControls.start({scale: [0.5, 1, 1.3, 1, 0.5], transition:{repeat: Infinity, repeatType: "mirror", duration: 3}})
+    //   thirdControls.start({scale: [0.7, 0.7, 1.2, 0.7, 0.7], transition:{repeat: Infinity, repeatType: "mirror", duration: 3}})
+    //   fourthControls.start({scale: [0.5, 0.5, 1.1, 0.5, 0.5], transition:{repeat: Infinity, repeatType: "mirror", duration: 3}})
+    // }, [])
+
+    useEffect(() => {
+      if (isPlaying === true) {
+        firstControls.start({scale: [1, 1.5, 1], transition: {repeat: Infinity, repeatType: "mirror", duration: 1.5}})
+        secondControls.start({scale: [0.5, 1, 1.3, 1, 0.5], transition:{repeat: Infinity, repeatType: "mirror", duration: 3}})
+        thirdControls.start({scale: [0.7, 0.7, 1.2, 0.7, 0.7], transition:{repeat: Infinity, repeatType: "mirror", duration: 3}})
+        fourthControls.start({scale: [0.5, 0.5, 1.1, 0.5, 0.5], transition:{repeat: Infinity, repeatType: "mirror", duration: 3}})
+      }
+      else {
+        firstControls.stop()
+        secondControls.stop()
+        thirdControls.stop()
+        fourthControls.stop()
+      }
+    }, [isPlaying])
+
   return (
-    <div className="relative w-32 h-32 flex item">
-      <motion.div animate={{scale: [1, 1.5, 1]}} transition={{repeat: Infinity, repeatType: "mirror", duration: 1.5}} className="z-40 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[50%] h-[50%] rounded-full flex items-center justify-center">
+    <div className="z-0 relative w-full flex justify-center">
+      <div className="w-32 h-32 relative">
+      <motion.div animate={firstControls} className="z-40 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[50%] h-[50%] rounded-full flex items-center justify-center">
         <svg
           width={"90%"}
           height={"90%"}
@@ -32,10 +63,10 @@ export default function SkypeAnim({color, darkColor}: Props) {
           />
         </svg>
       </motion.div>
-      <motion.div animate={{scale: [0.5, 1, 1.3, 1, 0.5]}} transition={{repeat: Infinity, repeatType: "mirror", duration: 3}} className={`z-30 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[50%] h-[50%] rounded-full bg-${color} dark:bg-${darkColor}`}  />
-      <motion.div animate={{scale: [0.7, 0.7, 1.2, 0.7, 0.7]}}  transition={{repeat: Infinity, repeatType: "mirror", duration: 3}} className={`z-20 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[70%] h-[70%] rounded-full  bg-opacity-50 bg-${color} dark:bg-opacity-50 dark:bg-${darkColor}`} />
-      <motion.div animate={{scale: [0.5, 0.5, 1.1, 0.5, 0.5]}} transition={{repeat: Infinity, repeatType: "mirror", duration: 3}} className={`z-20 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[90%] h-[90%] rounded-full  bg-opacity-25 bg-${color} dark:bg-opacity-25 dark:bg-${darkColor}`} />
-        
+      <motion.div animate={secondControls} className={`z-30 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[50%] h-[50%] rounded-full bg-${color} dark:bg-${darkColor}`}  />
+      <motion.div animate={thirdControls} className={`z-20 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[70%] h-[70%] rounded-full  bg-opacity-50 bg-${color} dark:bg-opacity-50 dark:bg-${darkColor}`} />
+      <motion.div animate={fourthControls} className={`z-10 absolute top-0 left-0 right-0 bottom-0 mr-auto ml-auto mt-auto mb-auto w-[90%] h-[90%] rounded-full  bg-opacity-25 bg-${color} dark:bg-opacity-25 dark:bg-${darkColor}`} />
+      </div>
     </div>
   );
 }

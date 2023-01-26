@@ -56,7 +56,7 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle, coo
       setPageCookie(getCookie("schmarrntyp"))
     }
     
-    const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<any>(true)
+    const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<boolean>(false)
 
     const search = (e:any) => {
         let tempFilter = episodes.filter((episode:EpisodeData) => e === "" || episode.title.toLowerCase().includes(e) || episode.location.toLowerCase().includes(e)); //filter for hits on title or location

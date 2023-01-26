@@ -10,13 +10,14 @@ interface Props {
    activeAnnotator: any;
    timestamps: any[];
    annotatorLookup: any[];
+   isPlaying: boolean;
 }   
 
-export default function SourceBox({visibleTimestamp, activeAnnotator, timestamps, annotatorLookup}:Props) {
+export default function SourceBox({ isPlaying, visibleTimestamp, activeAnnotator, timestamps, annotatorLookup}:Props) {
     return (
-        <div className="bg-kaiserschmarrn-raw dark:bg-rum rounded-[10px] py-10 px-10 text-burnt">
+        <div className="bg-kaiserschmarrn-raw dark:bg-rum rounded-[10px] px-5 py-10 lg:px-10 text-burnt">
             {visibleTimestamp === undefined ? (
-              <><div className="w-full h-full flex flex-wrap items-center justify-center"><SkypeAnim color={"rum"} darkColor={"burnt"}/></div></>
+              <><div className="w-full h-full flex flex-wrap items-center justify-center"><SkypeAnim color={"rum"} isPlaying={isPlaying} darkColor={"burnt"}/></div></>
             ) : (
               <ul className="flex flex-col gap-5">
                 {visibleTimestamp !== undefined ?
@@ -26,8 +27,8 @@ export default function SourceBox({visibleTimestamp, activeAnnotator, timestamps
 
                     <li key={i}>
                       <a href={annotation.reasoningLink} className="flex flex-col gap-1">
-                        <div className="flex gap-1 items-end">[{i + 1}]<span className="text-xs">{annotation.reasoningType}</span></div>
-                        <div className="flex flex-col ml-6">
+                        <div className="flex lg:flex-col gap-1 mb-2 lg:mb-0 items-end">[{i + 1}]<span className="text-xs">{annotation.reasoningType === "quote" ? "Zitat" : "Anekdote"}</span></div>
+                        <div className="flex flex-col lg:ml-6">
                           <div className="font-poppins leading-none">{annotation.reasoningSource}</div>
                           <div className="text-sm">{annotation.reasoningBody}</div>
                         </div>

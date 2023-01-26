@@ -78,7 +78,7 @@ let isFirstLoad = true;
 export default function Page({ page, toggle, setThemeLocalStorage, questions, cookie }: any) {
   const router = useRouter();
   const [pageCookie, setPageCookie] = useState<any>();
-  const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<boolean>(true)
+  const [schmarrnTestVisible, setSchmarrnTestVisible] = useState<boolean>(false)
   
   useEffect(() => {
     setPageCookie(getCookie("schmarrntyp"))

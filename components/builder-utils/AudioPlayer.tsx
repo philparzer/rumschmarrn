@@ -113,7 +113,11 @@ const AudioPlayer = ({ audioSrc, episode, annotators, timestamps }: Props) => {
         setVolume={setCurrentVolume}
         progress={progress}
         setProgress={dragProgress}
+        annotators={annotators}
+        timestamps={timestamps}
+        skipToTime={skipToTime}
       />
+      
       }
     </>
   );
