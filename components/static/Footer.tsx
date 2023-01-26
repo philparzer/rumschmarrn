@@ -68,8 +68,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <section className="text-center tracking-wider px-20 xl:px-60 text-xs py-2 text-white">
-        <div className="flex flex-col items-end justify-center lg:justify-end  transition-opacity gap-5 pb-10 lg:pb-none">
+      <section className="text-center tracking-wider px-20 xl:px-60 text-xs pb-20 text-white">
+        <div className="flex flex-col items-center lg:items-end justify-center lg:justify-end  transition-opacity gap-5 pb-10 lg:pb-none">
         <a
           href="https://github.com/philparzer/rumschmarrn"
           target="_blank"
