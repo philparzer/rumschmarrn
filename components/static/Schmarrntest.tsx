@@ -81,7 +81,7 @@ export default function Schmarrntest({ questions, setVisible, updateCookie }: Pr
       } //Soc-Left + Econ-Right
       
       console.log(answers)
-      setCookie("schmarrntyp", typ)
+      setCookie("schmarrntyp", typ, {maxAge: 34560000  } )
       updateCookie()
       if (typ !== undefined) { addSchmarrn(typ);}
     }
