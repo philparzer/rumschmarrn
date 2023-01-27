@@ -18,11 +18,15 @@ export default function QuadTeaser({ title, teasers }: Props) {
   const isIos = useIsIos();
 
   return (
-    <section className="w-full flex flex-col items-center justify-center my-20 mb-60 md:mb-40 md:my-40">
-      <h2 className="font-inter font-semibold text-4xl relative z-10 mb-10 pointer-events-none dark:text-white">
+    <>
+    <div>
+    <h2 className="font-inter font-semibold text-4xl relative z-10 pointer-events-none dark:text-white lg:rotate-[-12.5deg] flex justify-center lg:pr-[15%] mt-20 lg:mb-20 w-full">
         {title}
-      </h2>
-      <div className="relative flex h-[50vh] max-h-[520px] w-full items-center justify-center translate-x-[88%] sm:translate-x-[40%] translate-y-10 lg:translate-x-0">
+    </h2>
+    </div>
+    <section className="relative w-full flex flex-col items-center justify-center mb-60 md:mb-40">
+      
+      <div className="relative flex min-h-[500px] h-[50vh] max-h-[520px] w-full items-center justify-center translate-x-[88%] sm:translate-x-[40%] translate-y-10 lg:translate-x-0">
         <svg
           className="absolute w-[854px] h-[770px] -translate-x-6 -translate-y-4"
           viewBox="0 0 854 770"
@@ -113,5 +117,6 @@ export default function QuadTeaser({ title, teasers }: Props) {
         </div>
       }
     </section>
+    </>
   );
 }

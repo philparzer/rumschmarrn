@@ -100,12 +100,12 @@ export default function Schmarrntest({ questions, setVisible, updateCookie }: Pr
         ) : (
       <div className="bg-white px-8 pt-7 rounded-[10px] w-11/12 lg:w-[33vw] flex flex-col justify-between">
             <div className="flex justify-center">
-              <div className="w-[90%] h-2 rounded-full bg-glass relative">
+              <div className="w-[90%] h-2 rounded-full bg-glass relative ">
                 <div
                   style={{
                     width: `${(currentQuestion / questions.length) * 100}%`,
                   }}
-                  className="h-2 rounded-full bg-schmarrn-dark absolute"
+                  className="h-2 rounded-full bg-schmarrn-dark absolute transition-all"
                 ></div>
               </div>
             </div>
@@ -122,11 +122,11 @@ export default function Schmarrntest({ questions, setVisible, updateCookie }: Pr
                   <div className="mt-8 flex gap-10 lg:gap-20">
                     <button
                       onClick={() => yesNoClick(true)}
-                      className="flex gap-4 items-center"
+                      className="flex gap-4 items-center group"
                     >
-                      <div className="relative flex justify-center">
-                        <span className="relative z-10">Ja</span>
-                        <div className="w-[120%] h-2 bg-schmarrn-dark bottom-1 absolute"></div>
+                      <div className="relative flex justify-center ">
+                        <span className="relative z-10 ">Ja</span>
+                        <div className="w-[120%] h-2 group-hover:h-[80%] transition-all bg-schmarrn-dark bottom-1 absolute"></div>
                       </div>
                       <svg
                         width="37"
@@ -173,11 +173,11 @@ export default function Schmarrntest({ questions, setVisible, updateCookie }: Pr
                     </button>
                     <button
                       onClick={() => yesNoClick(false)}
-                      className="flex gap-4 items-center"
+                      className="flex gap-4 items-center group"
                     >
                       <div className="relative flex justify-center">
                         <span className="relative z-10">Nein</span>
-                        <div className="w-[120%] h-2 bg-rum bottom-1 absolute"></div>
+                        <div className="w-[120%] h-2 group-hover:h-[80%] transition-all bg-rum bottom-1 absolute"></div>
                       </div>
                       <svg
                         width="37"
@@ -227,9 +227,7 @@ export default function Schmarrntest({ questions, setVisible, updateCookie }: Pr
               </div>
             </div>
             <div className="self-end mt-10 mb-4">
-              <button className="underline text-xs"> {/*TODO: */}
-                Schmarrntest schon gemacht?
-              </button>
+              
             </div>
       </div>
       )}

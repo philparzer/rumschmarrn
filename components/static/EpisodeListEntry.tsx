@@ -24,9 +24,9 @@ export default function EpisodeListEntry({ episode, bgOpacity }: Props) {
             <h3 className="font-poppins text-xl mr-[7%]">
               {episode.indexNumber}
             </h3>
-            <div className="w-full">
-              <h2 className="font-semibold">{episode.title}</h2>
-              <div className="xl:hidden flex text-sm w-[250px] sm:w-[300px] md:w-[350px] overflow-hidden  text-ellipsis whitespace-nowrap flex-wrap gap-1 ">
+            <div className="w-full py-2 lg:py-0">
+              <h2 className="font-semibold w-[250px] mr-3 sm:w-[300px] md:w-[350px] overflow-hidden text-ellipsis whitespace-nowrap">{episode.title}</h2>
+              <div className="xl:hidden flex mr-3 text-sm w-[250px] sm:w-[300px] md:w-[350px] overflow-hidden  text-ellipsis whitespace-nowrap flex-wrap items-center gap-1">
                 <div className="w-full md:w-auto leading-none">{episode.location}, {episode.city}</div><div className="hidden md:block">|</div><div>{" "}
                 {new Date(episode.date).toLocaleDateString("de")}</div>
               </div>
@@ -38,7 +38,7 @@ export default function EpisodeListEntry({ episode, bgOpacity }: Props) {
           </div>
         </div>
 
-        <div className="w-2/12 flex justify-end h-[61px] items-center">
+        <div className="w-2/12 justify-end h-[61px] items-center flex">
           <svg
             className="w-[20px] h-[20px] mr-4"
             width="12"
