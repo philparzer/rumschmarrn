@@ -66,9 +66,21 @@ export default function Page({ page, episodes, setThemeLocalStorage, toggle, coo
   return (
     <>
       <Head>
-        {/* Add any relevant SEO metadata or open graph tags here */}
-        <title>{page?.data.title}</title>
-        <meta name="description" content={page?.data.descripton} />
+      <title>Episoden</title>
+        <meta name="description" content={"Hier findest du alle bisherigen Episoden des bald-mal-Kultpodcasts aus Österreich"} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:image"
+          content={`/og/main.png`}
+        />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+          <meta name="msapplication-TileColor" content="#da532c" />
+          <meta name="theme-color" content="#ffffff" />
       </Head>
       <Nav toggle={toggle} setThemeLocalStorage={setThemeLocalStorage} schmarrntyp={pageCookie !== undefined ? pageCookie : undefined}/>
       <div className="h-40"></div>

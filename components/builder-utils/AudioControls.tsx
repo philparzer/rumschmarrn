@@ -131,7 +131,7 @@ export default function AudioControls({
             <div>
               <input
                 className="w-14 mb-5 -rotate-90 appearance-none accent-burnt h-2 bg-glass dark:bg-night dark:accent-white rounded-lg cursor-pointer"
-                title="volume"
+                title="Lautstärke anpassen"
                 type="range"
                 value={volume}
                 step=".02"
@@ -224,6 +224,7 @@ export default function AudioControls({
               <button
                 onClick={() => onPlayPauseClick(true)}
                 className="pointer-events-auto"
+                title={"Podcast starten"}
               >
                 <svg
                   width="20"
@@ -242,6 +243,7 @@ export default function AudioControls({
               <button
                 onClick={() => onPlayPauseClick(false)}
                 className="pointer-events-auto focus:border-0"
+                title={"Podcast pausieren"}
               >
                 <svg
                   width="16"

@@ -20,7 +20,7 @@ interface Props {
 
 export default function GridCard({ file, title, text, fileType, altText }: Props) {
   return (
-    <section className="flex flex-col lg:flex-row lg:justify-between lg:items-center my-20 gap-10">
+    <section className="flex flex-col lg:flex-row lg:justify-between lg:items-center mt-32 lg:mt-52 gap-10">
       <div className="lg:max-w-[500px]">
         <h2 className="text-[32px] lg:text-[40px] font-poppins leading-tight dark:text-white">{title}</h2>
         <div

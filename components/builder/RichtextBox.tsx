@@ -10,7 +10,7 @@ interface Props {
 export default function RichtextBox({ text }:Props) {
     return (
         <div
-          className="my-4 richtext"
+          className="mt-20 richtext"
           dangerouslySetInnerHTML={{
             __html: text,
           }}

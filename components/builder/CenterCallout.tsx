@@ -10,7 +10,7 @@ interface Props {
 
 export default function CenterCallout({ title, callouts }: Props) {
   return (
-    <section className="w-full lg:order-auto grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20 my-20 flex-wrap">
+    <section className="w-full lg:order-auto grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20 mt-32 lg:mt-40 flex-wrap">
       <div className="order-2 place-self-end lg:self-start lg:mb-20  h-40 w-40 flex flex-col gap-4">
         <svg
           width="100%"

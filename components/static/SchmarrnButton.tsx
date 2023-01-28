@@ -19,7 +19,7 @@ export default function SchmarrnButton({handler, type, isPersonalSchmarrnType}:P
 
 
     return (
-            <button className="w-12 h-12" onClick={() => handler(type)}> {/*TODO: export buttons correctly */}
+            <button className="w-12 h-12" title={`zum Schmarrntyp ${SchmarrnType[type]} wechseln`} onClick={() => handler(type)}> {/*TODO: export buttons correctly */}
                 {type === SchmarrnType.Blaubeer &&
                     <div className={`${isPersonalSchmarrnType && "animate-bounce"}`}>
                     <Blaubeer />

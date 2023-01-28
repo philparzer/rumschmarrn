@@ -86,6 +86,7 @@ export default function BottomSheet({
           width: "100%",
         }}
         className="inline-block w-full bg-white dark:bg-night top-shadow pointer-events-auto"
+        title={"Ziehbares element, nach oben wischen, um Kontrollelemente anzuzeigen"}
       >
         <div className="flex h-[66px] items-center px-[5%] pr-[10%] justify-between">
           <div className="flex gap-[20px] items-center">
@@ -111,6 +112,7 @@ export default function BottomSheet({
               <button
                 onClick={() => onPlayPauseClick(true)}
                 className="pointer-events-auto"
+                title="Podcast starten"
               >
                 <svg
                   width="20"
@@ -129,6 +131,7 @@ export default function BottomSheet({
               <button
                 onClick={() => onPlayPauseClick(false)}
                 className="pointer-events-auto focus:border-0"
+                title="Podcast pausieren"
               >
                 <svg
                   width="16"
@@ -171,7 +174,7 @@ export default function BottomSheet({
                 <div className="relative grow flex items-center">
                   <input
                     className="w-full relative appearance-none accent-rum h-2 bg-glass dark:bg-burnt dark:accent-rum rounded-lg cursor-pointer"
-                    title="volume"
+                    title="Vor- oder zurückspulen"
                     type="range"
                     step=".0001"
                     min="0"

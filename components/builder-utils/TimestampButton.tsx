@@ -22,6 +22,7 @@ export default function TimestampButton({ isToggled, updateTimestamp, barHeight,
               }  transition-colors h-[${
                 barHeight
               }] w-full absolute bottom-0 rounded-[5px]`}
+              title={"Zu diesem Zeitstempel springen und Kommentare anzeigen"}
             ></button>
           </div>
     )
