@@ -16,7 +16,7 @@ export default function Home({ home, toggle, setThemeLocalStorage, cookie }: any
     <div>
       <Head>
         <title>Rumschmarrn</title>
-        <meta name="description" content="Rumschmarrn ist DER Podcast aus Österreich. Wir zeigen wieder die Alltagsgeschichten der Daigen. Rumschmarrn.com bietet ein innovatives cross-mediales Angebot, um den Pocast zu konsumieren." />
+        <meta name="description" content="Rumschmarrn ist DER Podcast aus Österreich. Wir zeigen die Alltagsgeschichten der Daigen. Rumschmarrn.com bietet ein innovatives cross-mediales Angebot, um den Pocast zu konsumieren." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta

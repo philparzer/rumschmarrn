@@ -4,6 +4,7 @@ import { builder, Builder } from "@builder.io/react";
 import dynamic from "next/dynamic";
 import { ColorTheme } from "../shared-ts/enums"
 import { useState, useEffect } from "react"
+import { Analytics } from '@vercel/analytics/react';
 
 
 if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
@@ -79,6 +80,7 @@ function App(props: any) {
       <div className="dark:bg-burnt dark:text-light">
       <props.Component {...props.pageProps} />
       </div>
+      <Analytics />
     </div>
   );
 }
