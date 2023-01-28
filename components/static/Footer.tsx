@@ -22,53 +22,53 @@ export default function Footer() {
   
     return (
     <footer className="bg-burnt text-white dark:bg-night">
-      <div className="mt-60 md:pl-20 px-5 md:px-20 xl:pr-60 flex flex-col md:flex-row w-full py-20 lg:py-32  justify-center md:justify-between items-center flex-wrap">
+      <div className="mt-20 lg:mt-60 md:pl-20 px-5 md:px-20 xl:pr-60 flex flex-col md:flex-row w-full py-20 lg:py-32  justify-center md:justify-between items-center flex-wrap">
         <div className="flex order-last md:order-first mt-20 lg:mt-0">
           <Logo pathToHome={"/"} inverted={true} />
         </div>
         <div className="flex gap-10 lg:gap-[5vw] flex-col md:flex-row text-center lg:text-end">
           <div className="flex flex-col gap-1">
             <h3 className="text-schmarrn-dark text-xs">Sitemap</h3>
-            <Link className="transition hover:text-rum" href="/episoden">
+            <Link className="transition hover:text-schmarrn-light" href="/episoden">
               Episoden
             </Link>
-            <Link className="transition hover:text-rum" href="/konzept">
+            <Link className="transition hover:text-schmarrn-light" href="/konzept">
               Konzept
             </Link>
-            <Link className="transition hover:text-rum" href="/ueber-uns">
+            <Link className="transition hover:text-schmarrn-light" href="/ueber-uns">
               Über Uns
             </Link>
           </div>
           <div className="flex flex-col gap-1">
             <h3 className="text-schmarrn-dark text-xs">Finde uns auf</h3>
             <a className="transition  opacity-25">
-              Coming Soon
+              Kommt bald
             </a>
             <a className="transition  opacity-25">
-            Coming Soon
+            Kommt bald
             </a>
             <a className="transition  opacity-25" >
-            Coming Soon
+            Kommt bald
             </a>
           </div>
           <div className="flex flex-col gap-1 text-center lg:text-end">
             <h3 className="text-schmarrn-dark text-xs">Sonstiges</h3>
             <a
-              className="transition hover:text-rum"
+              className="transition hover:text-schmarrn-light"
               href="mailto:rumschmarrn@gmail.com"
             >
               Kontakt
             </a>
-            <Link className="transition hover:text-rum" href="/impressum">
+            <Link className="transition hover:text-schmarrn-light" href="/impressum">
               Impressum
             </Link>
-            <Link className="transition hover:text-rum" href="/datenschutz">
+            <Link className="transition hover:text-schmarrn-light" href="/datenschutz">
               Datenschutz
             </Link>
           </div>
         </div>
       </div>
-      <section className="text-center tracking-wider px-20 xl:px-60 text-xs pb-20 text-white">
+      <section className="text-center tracking-wider px-20 xl:px-60 text-xs pb-20 lg:pb-0 text-white">
         <div className="flex flex-col items-center lg:items-end justify-center lg:justify-end  transition-opacity gap-5 pb-10 lg:pb-none">
         <a
           href="https://github.com/philparzer/rumschmarrn"

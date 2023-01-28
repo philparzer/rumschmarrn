@@ -141,7 +141,7 @@ export default function AudioControlsMobile({
   }
   return (
     <>
-      <div className="z-10 fixed bottom-0 left-0 flex w-[100vw]">
+      <div className="z-10 fixed bottom-0 left-0 flex w-[100vw] pointer-events-none">
         <BottomSheet activeAnnotator={activeAnnotator} setActiveAnnotator={setActiveAnnotator} activeAnnotatorData={activeAnnotator} audioMeta={audioMeta} progress={progress} setProgress={setProgress} onOpen={onOpen} isOpen={isOpen} onClose={onClose} episode={episode} setVolume={setVolume} isPlaying={isPlaying} volume={volume} onPlayPauseClick={onPlayPauseClick}/>
       </div>
       <div className="flex items-center h-[100px] mb-[35px]">
@@ -154,10 +154,10 @@ export default function AudioControlsMobile({
 
       <div className="flex flex-col gap-[10px]">
         <div className="w-full">
-          <QuoteBox isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
+          <QuoteBox isAtZero={audioMeta.trackProgress < 1} isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
         </div>
         <div className="w-full">
-          <SourceBox isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
+          <SourceBox isAtZero={audioMeta.trackProgress < 1} isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
         </div>
       </div>
       <div className="flex-col items-center relative  w-full lg:w-[20%] my-10 flex">

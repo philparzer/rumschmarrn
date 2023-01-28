@@ -11,13 +11,14 @@ interface Props {
     timestamps: any[];
     annotatorLookup: any[];
     isPlaying: boolean;
+    isAtZero: boolean;
 }   
 
-export default function QuoteBox({timestamps, visibleTimestamp, activeAnnotator, annotatorLookup, isPlaying}:Props) {
+export default function QuoteBox({isAtZero, timestamps, visibleTimestamp, activeAnnotator, annotatorLookup, isPlaying}:Props) {
     return (
         <div className="lg:w-[68%] transition-all lg:min-h-[0px] lg:h-80 bg-schmarrn-light rounded-[10px] text-burnt px-5 lg:px-10 py-10">
           {visibleTimestamp === undefined ? (
-            <div className="w-full h-full flex flex-wrap items-center justify-center"><SkypeAnim color={"rum"} darkColor={"rum"} isPlaying={isPlaying}/></div>
+            <div className="w-full h-full flex flex-wrap items-center justify-center transition-all">{isAtZero ? <p className="min-h-32 max-w-[60%] flex text-center">Hier werden die Kommentare zu den jeweiligen Zeitpunkten angezeigt. <br/> <br/>Sobald du auf Start klickst (unten rechts).</p> :<SkypeAnim color={"rum"} darkColor={"rum"} isPlaying={isPlaying}/>}</div>
           ) : (
             <div className="">
               <h3 className="mb-5 lg:mb-10 text-lg font-poppins">

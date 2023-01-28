@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ColorTheme } from "../../shared-ts/enums"
 import ThemeToggle from "./ThemeToggle";
+import { useRouter } from "next/router"
 
 interface Props {
   toggle: ColorTheme;
@@ -12,33 +13,43 @@ interface Props {
 }
 
 export default function Nav({toggle, setThemeLocalStorage, schmarrntyp}: Props) {
+  const router = useRouter()
   const [navDrawerVisible, setNavDrawerVisible] = useState(false);
   const showNavDrawer = () => {
-    setNavDrawerVisible(!navDrawerVisible);
+    setNavDrawerVisible(true);
   };
 
   const hideNavDrawer = () => {
-    setNavDrawerVisible(!navDrawerVisible);
+    setNavDrawerVisible(false);
   };
+
+  const navigateAway = (link:string) => {
+    router.push(link).then(() => setNavDrawerVisible(false))
+    
+  }
 
   useEffect(() => {
     if (navDrawerVisible) {document.body.style.overflowY = "hidden";}
     else {document.body.style.overflowY = "auto";}
   }, [navDrawerVisible])
 
+
   return (
     <div>
       <nav className="h-14 px-5 md:px-20 flex items-center justify-between text-inter fixed top-0 w-full mb-20 bg-white z-40 text-burnt dark:text-white dark:bg-burnt">
         <Logo pathToHome={"/"} schmarrntyp={schmarrntyp}/>
         <div className="hidden md:flex gap-14 items-center">
-          <Link className="transition-all hover:tracking-wide" href="/episoden">
+          <Link className="transition-all relative group" href="/episoden">
             Episoden
+            <div className="w-full h-2 translate-y-1 group-hover:bg-rum -z-10 transition-all bg-schmarrn-dark bottom-1 absolute"></div>
           </Link>
-          <Link className="transition-all hover:tracking-wide" href="/konzept">
+          <Link className="transition-all group relative" href="/konzept">
             Konzept
+            <div className="hidden group-hover:block w-full h-1.5 -z-10 transition-all bg-schmarrn-dark bottom-1 absolute"></div>
           </Link>
-          <Link className="transition-all hover:tracking-wide" href="/ueber-uns">
+          <Link className="transition-all relative group" href="/ueber-uns">
             Über Uns
+            <div className="hidden group-hover:block w-full h-1.5 -z-10 transition-all bg-schmarrn-dark bottom-1 absolute"></div>
           </Link>
           <ThemeToggle toggle={toggle} handler={setThemeLocalStorage} />
         </div>
@@ -63,15 +74,16 @@ export default function Nav({toggle, setThemeLocalStorage, schmarrntyp}: Props) 
 
             
             <div className="flex flex-col items-center px-5 justify-center font-semibold gap-[5vh] mb-[20vh] text-2xl">
-            <Link className="transition-all hover:tracking-wide px-4 py-2  rounded-full" href="/episoden">
+            <button onClick={() => navigateAway("/episoden")}className="transition-all hover:tracking-wide py-2  rounded-full relative" >
               Episoden
-            </Link>
-            <Link className="transition-all hover:tracking-wide px-4 py-2  rounded-full" href="/konzept">
+              <div className="w-full h-2 group-hover:h-[80%] transition-all bg-schmarrn-dark bottom-1 absolute"></div>
+            </button>
+            <button onClick={() => navigateAway("/konzept")}className="transition-all hover:tracking-wide py-2  rounded-full">
               Konzept
-            </Link>
-            <Link className="transition-all hover:tracking-wide px-4 py-2 rounded-full" href="/ueber-uns">
+            </button>
+            <button onClick={() => navigateAway("/ueber-uns")}className="transition-all hover:tracking-wide py-2 rounded-full" >
               Über Uns
-            </Link>
+            </button>
             
             </div>
             <ThemeToggle toggle={toggle} handler={setThemeLocalStorage} />

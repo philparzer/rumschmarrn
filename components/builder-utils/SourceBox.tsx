@@ -11,13 +11,14 @@ interface Props {
    timestamps: any[];
    annotatorLookup: any[];
    isPlaying: boolean;
+   isAtZero: boolean;
 }   
 
-export default function SourceBox({ isPlaying, visibleTimestamp, activeAnnotator, timestamps, annotatorLookup}:Props) {
+export default function SourceBox({ isAtZero, isPlaying, visibleTimestamp, activeAnnotator, timestamps, annotatorLookup}:Props) {
     return (
         <div className="bg-kaiserschmarrn-raw dark:bg-rum rounded-[10px] px-5 py-10 lg:px-10 text-burnt">
             {visibleTimestamp === undefined ? (
-              <><div className="w-full h-full flex flex-wrap items-center justify-center"><SkypeAnim color={"rum"} isPlaying={isPlaying} darkColor={"burnt"}/></div></>
+              <><div className="w-full h-full flex flex-wrap items-center justify-center">{isAtZero ? <p className="min-h-32 max-w-[60%] flex text-center">Hier werden dann die Quellen angezeigt.</p> : <SkypeAnim color={"rum"} isPlaying={isPlaying} darkColor={"burnt"}/>}</div></>
             ) : (
               <ul className="flex flex-col gap-5">
                 {visibleTimestamp !== undefined ?

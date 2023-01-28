@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import DefaultErrorPage from 'next/error';
+import Custom404 from './Custom404';
 import Head from 'next/head';
 import React from 'react';
 import { BuilderComponent, builder, useIsPreviewing, Builder } from '@builder.io/react';
@@ -103,7 +103,7 @@ export default function Page({ page, toggle, setThemeLocalStorage, questions, co
     content entries published in Builder.
   */
   if (!page && !isPreviewing) {
-    return <DefaultErrorPage statusCode={404} />;
+    return <Custom404 toggle={toggle} setThemeLocalStorage={setThemeLocalStorage}/>;
   }
 
 

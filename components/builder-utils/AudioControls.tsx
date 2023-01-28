@@ -277,11 +277,11 @@ export default function AudioControls({
           </p>
         </div>
       </div>
-
+              
       <div className="flex ml-10 gap-[3%] ">
-          <QuoteBox isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
+          <QuoteBox isAtZero={audioMeta.trackProgress < 1} isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
         <div className="w-[20%] grow">
-          <SourceBox isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
+          <SourceBox isAtZero={audioMeta.trackProgress < 1} isPlaying={isPlaying} visibleTimestamp={visibleTimestamp} activeAnnotator={activeAnnotator} timestamps={timestamps} annotatorLookup={annotatorLookup}/>
         </div>
       </div>
 

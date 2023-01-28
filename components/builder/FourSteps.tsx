@@ -19,7 +19,7 @@ export default function FourSteps({
   fourthStep,
 }: Props) {
   return (
-    <div className="lg:h-[400px]">
+    <div className="lg:h-[400px] mb-20 lg:mb-0">
     <section className="flex justify-center">
     <div className="flex flex-col lg:flex-row my-10 max-w-[990px]">
 

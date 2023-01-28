@@ -8,6 +8,7 @@ import { useState, useEffect } from "react"
 
 if (process.env.NEXT_PUBLIC_BUILDERIO_KEY) {
   builder.init(process.env.NEXT_PUBLIC_BUILDERIO_KEY);
+  builder.canTrack = false;
 }
 
 
@@ -394,3 +395,33 @@ Builder.registerComponent(
     ],
   }
 );
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/GridCard")),
+  {
+    name: "Schmarrntype Grid",
+    inputs: [
+      { name: "title", type: "text", defaultValue: "Heading" },
+      {
+        name: "text",
+        type: "richText",
+        defaultValue: "Lorem Ipsum dolor sit amet",
+      }
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic((): any => import("../components/builder/RichtextBox")),
+  {
+    name: "Richtext Box",
+    inputs: [
+      {
+        name: "text",
+        type: "richText",
+        defaultValue: "Lorem Ipsum dolor sit amet",
+      }
+    ],
+  }
+);
+

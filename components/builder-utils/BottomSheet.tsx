@@ -85,7 +85,7 @@ export default function BottomSheet({
           display: "inline-block",
           width: "100%",
         }}
-        className="inline-block w-full bg-white dark:bg-burnt top-shadow"
+        className="inline-block w-full bg-white dark:bg-night top-shadow pointer-events-auto"
       >
         <div className="flex h-[66px] items-center px-[5%] pr-[10%] justify-between">
           <div className="flex gap-[20px] items-center">
@@ -170,7 +170,7 @@ export default function BottomSheet({
                 </p>
                 <div className="relative grow flex items-center">
                   <input
-                    className="w-full relative appearance-none accent-rum h-2 bg-glass dark:bg-night dark:accent-rum rounded-lg cursor-pointer"
+                    className="w-full relative appearance-none accent-rum h-2 bg-glass dark:bg-burnt dark:accent-rum rounded-lg cursor-pointer"
                     title="volume"
                     type="range"
                     step=".0001"
