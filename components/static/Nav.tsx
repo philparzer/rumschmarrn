@@ -41,15 +41,15 @@ export default function Nav({toggle, setThemeLocalStorage, schmarrntyp}: Props) 
         <div className="hidden md:flex gap-14 items-center">
           <Link className="transition-all relative group" href="/episoden">
             Episoden
-            <div className="w-full h-2 translate-y-1 group-hover:bg-rum -z-10 transition-all bg-schmarrn-dark bottom-1 absolute"></div>
+            <div className="w-full h-2 translate-y-1 group-hover:bg-rum dark:bg-night -z-10 transition-all bg-schmarrn-dark bottom-1 absolute"></div>
           </Link>
           <Link className="transition-all group relative" href="/konzept">
             Konzept
-            <div className="hidden group-hover:block w-full h-1.5 -z-10 transition-all bg-schmarrn-dark bottom-1 absolute"></div>
+            <div className="hidden group-hover:block w-full h-1.5 -z-10 transition-all bg-schmarrn-dark dark:bg-rum bottom-1 absolute"></div>
           </Link>
           <Link className="transition-all relative group" href="/ueber-uns">
             Über Uns
-            <div className="hidden group-hover:block w-full h-1.5 -z-10 transition-all bg-schmarrn-dark bottom-1 absolute"></div>
+            <div className="hidden group-hover:block w-full h-1.5 -z-10 transition-all bg-schmarrn-dark  dark:bg-rum bottom-1 absolute"></div>
           </Link>
           <ThemeToggle toggle={toggle} handler={setThemeLocalStorage} />
         </div>
